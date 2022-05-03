@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://woshisb-river.github.io</id>
     <title>River</title>
-    <updated>2022-05-03T17:12:43.451Z</updated>
+    <updated>2022-05-03T17:15:09.559Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://woshisb-river.github.io"/>
     <link rel="self" href="https://woshisb-river.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>日落跌进昭昭星野，人间忽晚，山河已秋，你还会在我身边吗</subtitle>
     <logo>https://woshisb-river.github.io/images/avatar.png</logo>
     <icon>https://woshisb-river.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, River</rights>
