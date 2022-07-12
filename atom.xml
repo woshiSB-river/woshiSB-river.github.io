@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://woshisb-river.github.io</id>
     <title>River</title>
-    <updated>2022-07-12T06:21:10.796Z</updated>
+    <updated>2022-07-12T07:28:30.070Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://woshisb-river.github.io"/>
     <link rel="self" href="https://woshisb-river.github.io/atom.xml"/>
@@ -26,7 +26,237 @@
         <link href="https://woshisb-river.github.io/post/711-xiao-jie/">
         </link>
         <updated>2022-07-11T03:16:20.000Z</updated>
-        <content type="html"><![CDATA[<p>咕咕咕</p>
+        <summary type="html"><![CDATA[<h2 id="t1">T1</h2>
+<p>物种吃与被吃的关系构成一棵树，所以食物链的条数就是叶子个数， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span> 统计即可。要求最高级的物种能量，只需要从叶子开始，逐级往父亲统计即可，也是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>。</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long
+#define mod 32416190071
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+struct bb
+{	int nextt,to,w;
+}op[2000005];
+int n,rd[2000005],head[2000005],cnt,energy[2000005],ans,root;
+inline void add(int x,int y,int z)
+{	rd[y]++;
+	op[++cnt].nextt=head[x];
+	op[cnt].to=y;
+	op[cnt].w=z;
+	head[x]=cnt;
+}
+void dfs(int x)
+{	int gs=0;
+	for(register int i=head[x];i;i=op[i].nextt)
+	{	int y=op[i].to;
+		gs++;	
+		dfs(y);
+		energy[x]=(energy[y]*op[i].w%mod+energy[x])%mod;
+	}
+	if(gs==0)ans++;
+	return ;
+}
+signed main()
+{	freopen(&quot;Chain.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;Chain.out&quot;,&quot;w&quot;,stdout);
+	n=read();
+	for(register int i=1;i&lt;n;++i)
+	{	int x=read(),y=read(),z=read();
+		add(x,y,z);
+	}
+	for(register int i=1;i&lt;=n;++i)energy[i]=read();
+	for(register int i=1;i&lt;=n;++i)
+		if(rd[i]==0)root=i;
+	dfs(root);
+	cout&lt;&lt;ans&lt;&lt;endl&lt;&lt;energy[root];
+	return 0;
+}
+</code></pre>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="t1">T1</h2>
+<p>物种吃与被吃的关系构成一棵树，所以食物链的条数就是叶子个数， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span> 统计即可。要求最高级的物种能量，只需要从叶子开始，逐级往父亲统计即可，也是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>f</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dfs</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">s</span></span></span></span>。</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long
+#define mod 32416190071
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+struct bb
+{	int nextt,to,w;
+}op[2000005];
+int n,rd[2000005],head[2000005],cnt,energy[2000005],ans,root;
+inline void add(int x,int y,int z)
+{	rd[y]++;
+	op[++cnt].nextt=head[x];
+	op[cnt].to=y;
+	op[cnt].w=z;
+	head[x]=cnt;
+}
+void dfs(int x)
+{	int gs=0;
+	for(register int i=head[x];i;i=op[i].nextt)
+	{	int y=op[i].to;
+		gs++;	
+		dfs(y);
+		energy[x]=(energy[y]*op[i].w%mod+energy[x])%mod;
+	}
+	if(gs==0)ans++;
+	return ;
+}
+signed main()
+{	freopen(&quot;Chain.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;Chain.out&quot;,&quot;w&quot;,stdout);
+	n=read();
+	for(register int i=1;i&lt;n;++i)
+	{	int x=read(),y=read(),z=read();
+		add(x,y,z);
+	}
+	for(register int i=1;i&lt;=n;++i)energy[i]=read();
+	for(register int i=1;i&lt;=n;++i)
+		if(rd[i]==0)root=i;
+	dfs(root);
+	cout&lt;&lt;ans&lt;&lt;endl&lt;&lt;energy[root];
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<h2 id="t2">T2</h2>
+<p>设状态 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>s</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">s_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 所构成的前缀中的偶前缀之和。</p>
+<p>显然</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mi mathvariant="normal">∣</mi><mi>j</mi></mrow><mi>i</mi></munderover><mrow><mo>[</mo><msub><mi>s</mi><mn>1</mn></msub><msub><mi>s</mi><mn>2</mn></msub><msub><mi>s</mi><mn>3</mn></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msub><mi>s</mi><mi>j</mi></msub><mo>=</mo><mo>=</mo><msub><mi>s</mi><mrow><mi>i</mi><mo>−</mo><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub><msub><mi>s</mi><mrow><mi>i</mi><mo>−</mo><mi>j</mi><mo>+</mo><mn>2</mn></mrow></msub><msub><mi>s</mi><mrow><mi>i</mi><mo>−</mo><mi>j</mi><mo>+</mo><mn>3</mn></mrow></msub><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msub><mi>s</mi><mi>i</mi></msub></mrow><mo>]</mo></mrow><annotation encoding="application/x-tex">f_i=\sum_{j=2,2|j}^{i}{[s_1s_2s_3...s_j==s_{i-j+1}s_{i-j+2}s_{i-j+3}...s_i}]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.3276740000000005em;vertical-align:-1.5160049999999998em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8116690000000006em;"><span style="top:-1.8089950000000001em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">2</span><span class="mpunct mtight">,</span><span class="mord mtight">2</span><span class="mord mtight">∣</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5160049999999998em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen">[</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">3</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span></p>
+<p>考虑用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mi>m</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">kmp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">m</span><span class="mord mathdefault">p</span></span></span></span> 中的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>e</mi><mi>x</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">next</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord mathdefault">t</span></span></span></span> 数组优化一下。</p>
+<p>易推出转移方程：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>f</mi><mo>[</mo><mi mathvariant="normal">next</mi><mo>⁡</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>]</mo><mo>+</mo><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>2</mn><mo>∣</mo><mi>i</mi></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>f</mi><mo>[</mo><mi mathvariant="normal">next</mi><mo>⁡</mo><mo>[</mo><mi>i</mi><mo>]</mo><mo>]</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>2</mn><mo>∤</mo><mi>i</mi></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">f[i] = \begin{cases} f[\operatorname{next}[i]] + 1 &amp; 2 \mid i\\ f[\operatorname{next}[i]] &amp; 2\nmid i \end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mop"><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mord mathrm">x</span><span class="mord mathrm">t</span></span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mop"><span class="mord mathrm">n</span><span class="mord mathrm">e</span><span class="mord mathrm">x</span><span class="mord mathrm">t</span></span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">i</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">∤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+int nextt[200005],len,ans,dl[200005];
+char s[200005];
+signed main()
+{	freopen(&quot;Prefix.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;Prefix.out&quot;,&quot;w&quot;,stdout);
+	scanf(&quot;%s&quot;,s+1);
+	len=strlen(s+1);
+	nextt[0]=-1;
+	nextt[1]=0;
+	for(register int i=2;i&lt;=len;++i)
+	{	int j=nextt[i-1]+1;
+		while(s[j]!=s[i]&amp;&amp;j)j=nextt[j-1]+1;
+		if(j!=0)nextt[i]=j;
+		else nextt[i]=0;
+	}
+	for(register int i=1;i&lt;=len;++i)
+	{	if(nextt[i]%2==0&amp;&amp;nextt[i]&gt;0)dl[i]=1;
+		dl[i]+=dl[nextt[i]];
+		ans+=dl[i];
+	}
+	cout&lt;&lt;ans+len/2;
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<h2 id="t3">T3</h2>
+<p>看到数据范围 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>&lt;</mo><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">k&lt;=10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span> ，所以考虑建一个分层图，每一层都有正常的道路，相邻两层连有费用为零的同等道路。所以只用跑一遍从第一层的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 层的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 的最短路即可。</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+struct node
+{	int id,K,w;
+	bool operator &lt;(const node a)const
+	{	return w&gt;a.w;
+	}
+};
+struct bb
+{	int nextt,to,w;
+}op[50000*2+5];
+int n,m,k,s,t,head[2000005],cnt,dis[15][10005];
+bool bj[15][100005];
+priority_queue&lt;node&gt; q;
+inline void add(int x,int y,int z)
+{	op[++cnt].nextt=head[x];
+	op[cnt].to=y;
+	op[cnt].w=z;
+	head[x]=cnt;
+}
+void dij(int s)
+{	dis[0][s]=0;
+	node tmp;
+	tmp.id=s,tmp.K=0,tmp.w=0;
+	q.push(tmp);
+	while(!q.empty())
+	{	node now=q.top();
+		q.pop();
+		int x=now.id,k=now.K;
+		if(bj[k][x])continue;
+		bj[k][x]=1;
+		for(register int i=head[x];i;i=op[i].nextt)
+		{	int y=op[i].to;
+			if(k+1&lt;=10&amp;&amp;dis[k+1][y]&gt;dis[k][x])
+			{	dis[k+1][y]=dis[k][x];
+				if(!bj[k+1][y])
+				{	node tmp;
+					tmp.id=y,tmp.K=k+1,tmp.w=dis[k+1][y];
+					q.push(tmp);
+				}
+			}
+			if(dis[k][y]&gt;dis[k][x]+op[i].w)
+			{	dis[k][y]=dis[k][x]+op[i].w;
+				if(!bj[k][y])
+				{	node tmp;
+					tmp.id=y,tmp.K=k,tmp.w=dis[k][y];
+					q.push(tmp);
+				}
+			}
+		}
+	}
+}
+int main()
+{	freopen(&quot;Motor.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;Motor.out&quot;,&quot;w&quot;,stdout);
+	n=read(),m=read(),k=read(),s=read()+1,t=read()+1;
+	for(register int i=1;i&lt;=m;++i)
+	{	int x=read()+1,y=read()+1,z=read();
+		add(x,y,z),add(y,x,z);
+	}
+	memset(dis,0x3f,sizeof(dis));
+	dij(s);
+	cout&lt;&lt;dis[k][t];
+	return 0;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
