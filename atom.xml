@@ -2,14 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://woshisb-river.github.io</id>
     <title>River</title>
-    <updated>2022-05-03T17:39:28.926Z</updated>
+    <updated>2022-07-12T00:18:07.479Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://woshisb-river.github.io"/>
     <link rel="self" href="https://woshisb-river.github.io/atom.xml"/>
-    <subtitle>日落跌进昭昭星野，人间忽晚，山河已秋，你还会在我身边吗</subtitle>
+    <subtitle>日落跌进昭昭星野，人间忽晚，山河已秋</subtitle>
     <logo>https://woshisb-river.github.io/images/avatar.png</logo>
     <icon>https://woshisb-river.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, River</rights>
+    <entry>
+        <title type="html"><![CDATA[omgod]]></title>
+        <id>https://woshisb-river.github.io/post/omgod/</id>
+        <link href="https://woshisb-river.github.io/post/omgod/">
+        </link>
+        <updated>2022-07-12T00:17:08.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-cpp">sdasdawda
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[有博客啦]]></title>
         <id>https://woshisb-river.github.io/post/you-bo-ke-la/</id>

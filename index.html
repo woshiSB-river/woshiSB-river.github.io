@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
     <script src="https://woshisb-river.github.io/media/js/valine.min.js"></script>
     <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-    <meta name="description" content="日落跌进昭昭星野，人间忽晚，山河已秋，你还会在我身边吗" />
+    <meta name="description" content="日落跌进昭昭星野，人间忽晚，山河已秋" />
     <meta http-equiv="x-pjax-version" content="v123">
     <title>River</title>
 </head>
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
     
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/vs2015.min.css">
     
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
@@ -41,6 +41,30 @@
 
 
     <!--------- 数学公式👇---- -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css"
+        integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js"
+        integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js"
+        integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous">
+    </script>
+    <script>
+        renderMathInElement(document.body, {
+            delimiters: [{
+                    left: "$$",
+                    right: "$$",
+                    display: true
+                },
+                {
+                    left: "$",
+                    right: "$",
+                    display: false
+                }
+            ]
+        });
+    </script>
     
     <!--------- 数学公式👆----------------- -->
     <!--------- daovocie功能👇 ------------------->
@@ -93,10 +117,10 @@
                         src='https://woshisb-river.github.io/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         </div>
         <div class="avatar-border">
-            <img src="https://woshisb-river.github.io/images/avatar.png?v=1651599567272" class="avatar">
+            <img src="https://woshisb-river.github.io/images/avatar.png?v=1657585084380" class="avatar">
         </div>
         <div class="sitename">River</div>
-        <span class="description" data-text='["日落跌进昭昭星野，人间忽晚，山河已秋，你还会在我身边吗"]'>&nbsp;</span>
+        <span class="description" data-text='["日落跌进昭昭星野，人间忽晚，山河已秋"]'>&nbsp;</span>
         <div class="siteinfocontainer">
             <span class="siteinfo">文章</span>
             <span class="siteinfo">标签</span>
@@ -108,7 +132,7 @@
         
         <div class="search">
             <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
-            <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+            <input type="text" class="search-input" placeholder="搜搜看吧😘">
             <div class="search-results"></div>
         </div>
         
@@ -208,7 +232,7 @@
             <div>
                 
             </div>
-            <div class="copyright" style="color:white;text-align: center;">Copyright © 2020  备案号: 鄂ICP备...号
+            <div class="copyright" style="color:white;text-align: center;">
             </div>
         </div>
 
@@ -294,6 +318,13 @@
     
     <script>let postsnum = 0;</script>
     <div id="side-posttitle" style="display: none;">
+    
+    
+    omgod
+    <script>
+        postsnum += 1
+    </script>
+    
     
     
     有博客啦
@@ -946,7 +977,7 @@ menulist.eq(i).show();
                         <!-- 移动端欢迎页 -->
 <div class="welcome">
     <div class="avatar-border">
-        <img src="https://woshisb-river.github.io/images/avatar.png?v=1651599567272" class="avatar">
+        <img src="https://woshisb-river.github.io/images/avatar.png?v=1657585084380" class="avatar">
     </div>
     <span class="mobiledescribtion"></span>
 </div>
@@ -961,7 +992,7 @@ menulist.eq(i).show();
         bgurl = bgurl.replace("\\", "/");
     welcome.css("background", "url('" + bgurl + "')");
     var mobiledes = document.querySelector(".mobiledescribtion");
-    var text = "日落跌进昭昭星野，人间忽晚，山河已秋，你还会在我身边吗";
+    var text = "日落跌进昭昭星野，人间忽晚，山河已秋";
     // 当前显示第几个字
     var mobilecharIndex = 1;
     // 每个字显示间隔默认是500毫秒
@@ -1040,26 +1071,46 @@ menulist.eq(i).show();
     
     <div class="postshow postlist">
         
-        <a data-pjax href="https://woshisb-river.github.io/post/you-bo-ke-la/" class="apost">
+        <a data-pjax href="https://woshisb-river.github.io/post/omgod/" class="apost">
             <div id="post" style="width:100%">
-                
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/e6xry6pq.png" class="postimage">
-                
-            <div class="posttitlebox">
-                <div class="posttitle" >
-                有博客啦
+                <img src="https://gcore.jsdelivr.net/npm/ushio-api-img-moe@5.0.30/img_300_1920x1080_350_null_normal.jpg" class="postimage">
+                <div class="posttitlebox">
+                    <div class="posttitle">
+                        omgod
+                    </div>
+                </div>
             </div>
-    </div>
-</div>
-</a>
-<div class="postinfo">
-    <div class="postdate"><i class="fa fa-calendar"></i>2022-05-04</div>
-    <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
-    <div class="posttag">
+        </a>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2022-07-12</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+            <div class="posttag">
+                
+            </div>
+        </div>
         
-    </div>
 </div>
 
+    <div class="postshow postlist">
+        
+        <a data-pjax href="https://woshisb-river.github.io/post/you-bo-ke-la/" class="apost">
+            <div id="post" style="width:100%">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/e6xry6pq.png" class="postimage">
+                <div class="posttitlebox">
+                    <div class="posttitle">
+                        有博客啦
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2022-05-04</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
+            <div class="posttag">
+                
+            </div>
+        </div>
+        
 </div>
 
 </div>
@@ -1145,16 +1196,6 @@ menulist.eq(i).show();
         </div>
 
 <!-------------------- live2d功能👇 --------------------------->
-    
-        <script type="text/javascript">
-            var message_Path = '/live2d/'
-            var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
-        </script>
-        <script type="text/javascript" src="https://woshisb-river.github.io/media/js/live2d.js"></script>
-        <script type="text/javascript" src="https://woshisb-river.github.io/media/live2d/js/message.js"></script>
-        <script type="text/javascript">
-            loadlive2d("live2d", "https://woshisb-river.github.io/media/live2d/assets/tororo.model.json");
-        </script>
     
 <!-------------------- live2d功能👆 --------------------------->
 
