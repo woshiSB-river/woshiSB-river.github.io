@@ -2,27 +2,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <meta name="description" content="T1
+这边要求路径最大边的边权最小，所以考虑像货车运输利用最小生成树来建图，因为易证这样的路径一定在最小生成树上。
+但题目中有个加边的操作，刚看到时没思路，但看到数据范围 add≤1000add \leq 1000add≤1000 ，所以考..." />
+    <meta name="keywords" content="小结" />
     <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/live2d.css">
     <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
-    <script src="https://woshisb-river.github.io/media/js/valine.min.js"></script>
-    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-    <meta name="description" content="日落跌进昭昭星野，人间忽晚，山河已秋" />
-    <meta http-equiv="x-pjax-version" content="v123">
-    <title>River</title>
+    <!-- 代码渲染风格css -->
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/vs2015.min.css">
+    
+    <!-- 代码高亮插件 -->
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
+    <!-- 代码复制插件 -->
+    <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
+    <!-- live2d插件 -->
+    <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/live2d.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <!-- 数学公式 -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css"
+        integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js"
+        integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js"
+        integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous">
+        </script>
+    <script>
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            },
+            {
+                left: "$",
+                right: "$",
+                display: false
+            }
+            ]
+        });
+    </script>
+    
+    <title>7.13小结</title>
+
+    <!-- 大纲索引css调整 -->
+    
+    <style>
+        .markdownIt-TOC {
+            margin-left: 28%;
+            padding-left: 2px;
+            width: 80%;
+        }
+
+        .markdownIt-TOC li {
+            padding-left: 8%;
+        }
+    </style>
+    
 </head>
 
-
 <body>
+    <div id="landlord">
+        <div class="message" style="opacity:0"></div>
+        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+    </div>
+    <div id="domainname" style="display:none">https://woshisb-river.github.io</div>
     <div id="content">
-        <div class="nav-large">
-            <div class="row">
-                <!-- ----------------左侧菜单栏html 👇-------------------------------------->
-                
-                <!--------------- pc端菜单栏👇 ---------------->
-                <div class="side"><head>
+        <div>
+            <!----------- 移动端导航栏👇 ----------------->
+            <div id="bar">
+                <style>
+  .navmobile {
+    z-index: 15;
+    max-height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .navbar {
+      max-width: 100vw;
+    }
+  }
+
+  @media screen and (max-width:1200px) and (min-width: 768px) {
+    @media (min-width: 768px) {
+      .navbar-nav {
+        float: right;
+        margin: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    .mbapspan {
+      padding: 0;
+    }
+  }
+</style>
+<div class="pjaxloading"  onclick="pjaxloadingClose()">
+  <div class="loadingbackground"></div>
+  <div id="loading">
+    <div class="loading">
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
+        aria-expanded="false" id="barbutton">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a data-pjax class="navbar-brand" style="color:white" href="https://woshisb-river.github.io">River&nbsp;&nbsp;|</a>
+      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
+          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="barmenu">
+      <ul class="nav navbar-nav">
+        
+        
+        <li>
+          <a data-pjax href="/" style="color:white">
+            首页
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/archives" style="color:white">
+            归档
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/tags" style="color:white">
+            标签
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a data-pjax href="/post/about" style="color:white">
+            关于
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        <li><a data-pjax href="https://woshisb-river.github.io/friends" style="color:white">友链</a></li>
+
+        
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+  <!-- 引入jQuery核心js文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+  <script>
+    let btstate = false;
+    var bt = $("#barbutton");
+    var bm = $("#barmenu");
+    bt.click(function () {
+      dropdown();
+    })
+    function dropdown() {
+      console.log(btstate);
+      //下拉
+      if (btstate == false) {
+        bt.removeClass("collapsed");
+        bt.attr("aria-expanded", "true");
+        bm.attr("aria-expanded", "true")
+        bm.fadeIn(700);
+        btstate = true;
+      }
+      else {
+        bt.addClass("collapsed");
+        bt.attr("aria-expanded", "false");
+        bm.removeClass("in");
+        bm.hide();
+        bm.attr("aria-expanded", "false");
+        btstate = false;
+      }
+    }
+  </script> 
+            </div>
+            <!----------- 移动端导航栏👆 ----------------->
+
+            <!--------------- pc端菜单栏👇 ---------------->
+            <div class="side"><head>
     <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
     
@@ -843,7 +1029,11 @@ menulist.eq(i).show();
     }
 </script>
 <!----夜间模式👆--></div>
-                <!--------------- pc端菜单栏👆 ---------------->
+            <!--------------- pc端菜单栏👆 ---------------->
+
+            <!-- ----------------左侧菜单栏html 👇-------------------------------------->
+            
+            <div>
                 <div id="tab1" class="tab">
                     <div class="bars">
                         <span></span>
@@ -853,421 +1043,279 @@ menulist.eq(i).show();
                     <div class="close"></div>
                 </div>
                 <div class="col-md-1 col-lg-3"></div>
-                <!----------- 移动端导航栏👇 ----------------->
-                <div class="mobilebar"><style>
-  .navmobile {
-    z-index: 15;
-    max-height: 40vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-  }
-
-  @media screen and (max-width: 1200px) {
-    .navbar {
-      max-width: 100vw;
-    }
-  }
-
-  @media screen and (max-width:1200px) and (min-width: 768px) {
-    @media (min-width: 768px) {
-      .navbar-nav {
-        float: right;
-        margin: 0;
-      }
-    }
-  }
-
-  @media screen and (max-width:768px) {
-    .mbapspan {
-      padding: 0;
-    }
-  }
-</style>
-<div class="pjaxloading"  onclick="pjaxloadingClose()">
-  <div class="loadingbackground"></div>
-  <div id="loading">
-    <div class="loading">
-    </div>
-  </div>
-</div>
-<nav class="navbar navbar-inverse navbar-fixed-top navmobile">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barmenu"
-        aria-expanded="false" id="barbutton">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a data-pjax class="navbar-brand" style="color:white" href="https://woshisb-river.github.io">River&nbsp;&nbsp;|</a>
-      <span class="navbar-brand mbapspan"><i id="mbaplayer" class="fa fa-play-circle-o" aria-hidden="true"
-          style="font-size: 28px;top: 12px;position: absolute;" onclick="aplayerPlay();"></i></span>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="barmenu">
-      <ul class="nav navbar-nav">
-        
-        
-        <li>
-          <a data-pjax href="/" style="color:white">
-            首页
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/archives" style="color:white">
-            归档
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/tags" style="color:white">
-            标签
-          </a>
-        </li>
-        
-        
-        
-        <li>
-          <a data-pjax href="/post/about" style="color:white">
-            关于
-          </a>
-        </li>
-        
-        
-        
-        
-          
-        <li><a data-pjax href="https://woshisb-river.github.io/friends" style="color:white">友链</a></li>
-
-        
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-
-  <!-- 引入jQuery核心js文件 -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-  <script>
-    let btstate = false;
-    var bt = $("#barbutton");
-    var bm = $("#barmenu");
-    bt.click(function () {
-      dropdown();
-    })
-    function dropdown() {
-      console.log(btstate);
-      //下拉
-      if (btstate == false) {
-        bt.removeClass("collapsed");
-        bt.attr("aria-expanded", "true");
-        bm.attr("aria-expanded", "true")
-        bm.fadeIn(700);
-        btstate = true;
-      }
-      else {
-        bt.addClass("collapsed");
-        bt.attr("aria-expanded", "false");
-        bm.removeClass("in");
-        bm.hide();
-        bm.attr("aria-expanded", "false");
-        btstate = false;
-      }
-    }
-  </script> 
-                <!----------- 移动端导航栏👆 ----------------->
-                </div>
-                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
-                    <!-- 移动端 -->
-                    <div class="mobilebar">
-                        <!-- 移动端欢迎页 -->
-<div class="welcome">
-    <div class="avatar-border">
-        <img src="https://woshisb-river.github.io/images/avatar.png?v=1657850810922" class="avatar">
-    </div>
-    <span class="mobiledescribtion"></span>
-</div>
-
-
-    <div id="mobilebgurl" style="display:none"></div>
-
-<script>
-    var welcome = $('.welcome');
-    var bgurl = document.getElementById("mobilebgurl").innerHTML;
-    for (var i = 0; i < 3; i++)
-        bgurl = bgurl.replace("\\", "/");
-    welcome.css("background", "url('" + bgurl + "')");
-    var mobiledes = document.querySelector(".mobiledescribtion");
-    var text = "日落跌进昭昭星野，人间忽晚，山河已秋";
-    // 当前显示第几个字
-    var mobilecharIndex = 1;
-    // 每个字显示间隔默认是500毫秒
-    var mobiledelta = 500;
-
-    // 记录动画执行开始时间
-    var mobilestart = null;
-    // 是否为删除动画
-    var mobileisDeleting = false;
-
-    // 动画回调函数
-    function mobileLoadDes(time) {
-        window.requestAnimationFrame(mobileLoadDes);
-        // 初始化开始时间
-        if (!mobilestart) start = time;
-        // 获取时间间隔
-        var mobileprogress = time - mobilestart;
-        // 每隔一定的时间，打印出一个新的字符
-        if (mobileprogress > mobiledelta) {
-            // 如果是打字效果
-            if (!mobileisDeleting) {
-                // 给展示文字的span新增一个字符，使用innerHTML来替换，charIndex自增1，然后返回新的字符串子串
-                mobiledes.innerHTML = "&nbsp;" + text.slice(
-                    0,
-                    ++mobilecharIndex
-                );
-                mobiledelta = 500 - Math.random() * 400;
-            } else {
-                // 如果是删除效果，则把文字一个一个减掉
-                mobiledes.innerHTML = "&nbsp;" + text.slice(
-                    0,
-                    mobilecharIndex--
-                );
-            }
-            // 把star更新为当前时间，进行下一个周期
-            mobilestart = time;
-
-            // 如果文字已经全部打印完毕
-            if (mobilecharIndex === text.length) {
-                // 下次开始删除文字
-                mobileisDeleting = true;
-                // 删除文字的间隔为200毫秒
-                mobiledelta = 100;
-                // 额外等待1.2秒后再删除
-                mobilestart = time + 1000;
-            }
-
-            // 如果文字删除完毕
-            if (mobilecharIndex < 0) {
-                mobileisDeleting = false;
-                // 额外增加200毫秒延迟
-                mobilestart = time + 200;
-            }
-        }
-    }
-
-    window.requestAnimationFrame(mobileLoadDes);
-</script>
-                        <img src="" alt="" class="plbg">
-<script>
-    var bgchoice = "link";
-    if(bgchoice=='default')
-        var plbgurl = "/media/images/custom-mobilebg.jpg"
-    else  
-        var plbgurl = "https://cdn.luogu.com.cn/upload/image_hosting/9svd3qyv.png"
-    $(".plbg").attr("src",plbgurl);
-    $(".plbg").fadeIn(200);
-</script>
-                    </div>
-                    <div style="display:none">
-</div>
+                <!-- main标签，pjax渲染时加载以下内容👇 -->
+                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7" style="padding:0;">
+                    <div class="readingmode" onclick="readingmode()">阅</div>
                     <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/font-awesome.css">
 
-
-<div id="post-container">
-    
-    <div class="postshow postlist">
-        
-        <a data-pjax href="https://woshisb-river.github.io/post/713-xiao-jie/" class="apost">
-            <div id="post" style="width:100%">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/w0kmwcqn.png" class="postimage">
-                <div class="posttitlebox">
-                    <div class="posttitle">
-                        7.13小结
-                    </div>
-                </div>
-            </div>
-        </a>
-        <div class="postinfo">
-            <div class="postdate"><i class="fa fa-calendar"></i>2022-07-13</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
-            <div class="posttag">
-                
-                <a data-pjax href="https://woshisb-river.github.io/tag/dRCb1ASKt/" class="postlink">
-                    <i class="fa fa-tag"></i> 小结
-                </a>
-                
-            </div>
-        </div>
-        
-</div>
-
-    <div class="postshow postlist">
-        
-        <a data-pjax href="https://woshisb-river.github.io/post/omgod/" class="apost">
-            <div id="post" style="width:100%">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/myq3ajuq.png" class="postimage">
-                <div class="posttitlebox">
-                    <div class="posttitle">
-                        omgod
-                    </div>
-                </div>
-            </div>
-        </a>
-        <div class="postinfo">
-            <div class="postdate"><i class="fa fa-calendar"></i>2022-07-12</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
-            <div class="posttag">
-                
-            </div>
-        </div>
-        
-</div>
-
-    <div class="postshow postlist">
-        
-        <a data-pjax href="https://woshisb-river.github.io/post/711-xiao-jie/" class="apost">
-            <div id="post" style="width:100%">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/pelpraua.png" class="postimage">
-                <div class="posttitlebox">
-                    <div class="posttitle">
-                        7.11小结
-                    </div>
-                </div>
-            </div>
-        </a>
-        <div class="postinfo">
-            <div class="postdate"><i class="fa fa-calendar"></i>2022-07-11</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 6 min read</div>
-            <div class="posttag">
-                
-                <a data-pjax href="https://woshisb-river.github.io/tag/dRCb1ASKt/" class="postlink">
-                    <i class="fa fa-tag"></i> 小结
-                </a>
-                
-            </div>
-        </div>
-        
-</div>
-
-    <div class="postshow postlist">
-        
-        <a data-pjax href="https://woshisb-river.github.io/post/you-bo-ke-la/" class="apost">
-            <div id="post" style="width:100%">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/e6xry6pq.png" class="postimage">
-                <div class="posttitlebox">
-                    <div class="posttitle">
-                        7.10小结
-                    </div>
-                </div>
-            </div>
-        </a>
-        <div class="postinfo">
-            <div class="postdate"><i class="fa fa-calendar"></i>2022-07-10</div>
-            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 9 min read</div>
-            <div class="posttag">
-                
-                <a data-pjax href="https://woshisb-river.github.io/tag/dRCb1ASKt/" class="postlink">
-                    <i class="fa fa-tag"></i> 小结
-                </a>
-                
-            </div>
-        </div>
-        
-</div>
-
-</div>
-
-
-                    <div>
-                        <div class="pcpagi">
-    <div class="pagi">
-        <ul>
+<body>
+    <div class="allcontent" id="postdetail">
+        <div class="postshow postpadding" style="padding-bottom: 0;">
             
-            <li><a style="width:100px">&nbsp;</a></li>
-            
-                    <li><a id="page1">1</a></li>
-                    <li><a id="page2" class="active">2</a></li>
-                    <li><a id="page3">3</a></li>
+            <div class="postdetailimg">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/w0kmwcqn.png" class="postimage" style="cursor:auto">
+            </div>
+            <div class="postinfo-detail">
+                <div class="postdate"><i class="fa fa-calendar"></i>2022-07-13</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
+                <div class="posttag">
                     
-            <li><a style="width:100px">&nbsp;</a></li>
+                    <a data-pjax href="https://woshisb-river.github.io/tag/dRCb1ASKt/" class="postlink">
+                        <i class="fa fa-tag"></i> 小结
+                    </a>
+                    
+                </div>
+            </div>
             
-                </ul>
+        <div id="articlecontent">
+            <div id="texttitle" style="text-align: center">
+                <h2 id="ptitle">7.13小结</h2>
+                <!-- id 将作为查询条件 -->
+                <div id="pl" style="display:none">https://woshisb-river.github.io/post/713-xiao-jie/</div>
+                <div id="rootaddr" style="display:none">https://woshisb-river.github.io</div>
+                
+            </div>
+            <div class="text ">
+                <h2 id="t1">T1</h2>
+<p>这边要求路径最大边的边权最小，所以考虑像货车运输利用最小生成树来建图，因为易证这样的路径一定在最小生成树上。</p>
+<p>但题目中有个加边的操作，刚看到时没思路，但看到数据范围 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>d</mi><mi>d</mi><mo>≤</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">add \leq 1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> ，所以考虑每一次加边，就可以将边加入最小生成树的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 条边，一起再跑一遍最小生成树即可。</p>
+<p>再考虑最后的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>i</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">nim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span></span></span></span> 游戏，将两堆石子异或就好，如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，先手必败，否则必胜。</p>
+<p>就是实现有点难</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+struct street
+{	int x,y,z;
+}s[150005],now[150005];
+struct bb
+{	int nextt,to,w;
+}op[300005];
+int n,m,q,head[5005],lg[5005],cnt,f[5005][20],dep[5005],maxn[5005][20],tot,gs,fa[5005];
+inline bool cmp(street a,street b)
+{	return a.z&lt;b.z;
+}
+int find(int x)
+{	return fa[x]==x?x:fa[x]=find(fa[x]);
+}
+inline void add(int x,int y,int z)
+{	op[++cnt].nextt=head[x];
+	op[cnt].to=y;
+	op[cnt].w=z;
+	head[x]=cnt;
+}
+void dfs(int x,int fa,int z)
+{	//cerr&lt;&lt;x;
+	f[x][0]=fa;
+	maxn[x][0]=z;
+	dep[x]=dep[fa]+1;
+	for(register int i=1;i&lt;=lg[dep[x]]-1;++i)f[x][i]=f[f[x][i-1]][i-1],maxn[x][i]=max(maxn[x][i-1],maxn[f[x][i-1]][i-1]);
+	for(register int i=head[x];i;i=op[i].nextt)
+	{	int y=op[i].to;
+		if(y!=fa)dfs(y,x,op[i].w);
+	}
+}
+inline int lca(int x,int y)
+{	int maxnn=0;
+	if(dep[x]&lt;dep[y])swap(x,y);
+	while(dep[x]&gt;dep[y])maxnn=max(maxnn,maxn[x][lg[dep[x]-dep[y]]-1]),x=f[x][lg[dep[x]-dep[y]]-1];
+	if(x==y)return maxnn;
+	for(register int i=lg[dep[x]]-1;i&gt;=0;--i)
+		if(f[x][i]!=f[y][i])maxnn=max(maxnn,max(maxn[x][i],maxn[y][i])),x=f[x][i],y=f[y][i];
+	maxnn=max(maxnn,max(maxn[x][0],maxn[y][0]));
+	return maxnn;
+}
+void Kru()
+{	tot=0;
+	sort(s+1,s+gs+1,cmp);
+	for(register int i=1;i&lt;=n;++i)fa[i]=i;
+	for(register int i=1;i&lt;=gs;++i)
+	{	int fx=find(s[i].x),fy=find(s[i].y);
+		if(fx==fy)continue;
+		fa[fy]=fx;
+		now[++tot]=s[i];
+		if(tot==n-1)break;
+	}
+	gs=tot;
+	for(register int i=1;i&lt;=tot;++i)s[i]=now[i];
+	cnt=0,memset(head,0,sizeof(head)),memset(f,0,sizeof(f)),memset(maxn,0,sizeof(f)),memset(dep,0,sizeof(dep));
+	for(register int i=1;i&lt;=tot;++i)
+	{	int x=now[i].x,y=now[i].y,z=now[i].z;
+		add(x,y,z),add(y,x,z);
+	}
+	dfs(1,0,0);
+}
+signed main()
+{   n=read(),m=read();
+	for(register int i=1;i&lt;=n;++i)lg[i]=lg[i-1]+((1&lt;&lt;lg[i-1])==i);
+	for(register int i=1;i&lt;=m;++i)s[i].x=read(),s[i].y=read(),s[i].z=read();
+	gs=m;
+	q=read();
+	bool flag=1;
+	Kru();
+	for(register int i=1;i&lt;=q;++i)
+	{	char c;
+		cin&gt;&gt;c;
+		if(c=='a')
+		{	flag=0;
+			s[++gs].x=read(),s[gs].y=read(),s[gs].z=read();
+		}
+		else
+		{	if(!flag)Kru(),flag=1;
+			int m1=read(),m2=read(),b1=read(),b2=read();
+			if(lca(m1,m2)==lca(b1,b2))printf(&quot;Baozika\n&quot;);
+			else printf(&quot;madoka\n&quot;);
+		}
+	}
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<h2 id="t2">T2</h2>
+
+            </div>
+            <hr style="width: 80%;">
+            
+            <div class="postfooter">
+                <ul class="post-copyright">
+                    <li><strong>文章作者：</strong>woshiSB</li>
+            <li><strong>原文链接：</strong>https://woshisb-river.github.io/post/713-xiao-jie/</li>
+            <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
+                许可协议。转载请注明出处！</li>
+            </ul>
+        </div>
+        
+        <div id="otherpost">
+            
+            
+            <a data-pjax class="next-post-pc" href="https://woshisb-river.github.io/post/omgod/"  style="color: black;">
+                <div id="npcontainer">
+                    
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/myq3ajuq.png" style="width: 100%;" class="opimg">
+                    
+                    <h4 class="optitle">omgod</h4>
+                </div>
+            </a>
+            <div class="next-post">
+                下一篇 <a  data-pjax href="https://woshisb-river.github.io/post/omgod/">omgod</a>
+            </div>
+            
+        </div>
     </div>
-</div>
+    </div>
+    </div>
+    <!-- 弹窗 -->
+    <div id="myModal" class="modal">
+        <img class="modal-content" id="img01">
+    </div>
+</body>
+<script>
+    //文章阅读热度
+    var pl = $("#pl").html();
+    var rootaddr = $("#rootaddr").html();
+    pl = pl.replace(rootaddr, "");
+    $("#hotnum").attr('id', pl);
+</script>
+                    <div class="toc-container">
+                        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#t1">T1</a></li>
+<li><a href="#t2">T2</a></li>
+</ul>
+</li>
+</ul>
 
-<div id="pagination-prev" style="display:none"> 
-</div>
-<div id="pagination-next" style="display:none"> </div>
-
-<div class="pagination-container">
-      
-    
-</div>
+                    </div>
+                    <div class="tog">
+                        <div class="toggleContainer">
+                            <div class="toggle">
+                                <i class="fas fa-angle-double-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!---------------------------- 评论系统👇 ------------------------->
+                    <div id="comment" class="comment">
+                        <div class="commentcontainer">
+                            
+                                
+                            
+                        </div>
+                    </div>
+                    <!---------------------------- 评论系统👆 ------------------------->
+                </div>
+                <!-- main标签，pjax渲染时加载以上内容👆 -->
+                <div class="col-md-1 col-lg-2"></div>
+                <div id="bg">
+                </div>
+            </div>
+            <!-- ----------------左侧菜单栏html 👆-------------------------------------->
+            
+        </div>
+        <!-- aplayer播放器加载👇 -->
+            
+        <!-- aplayer播放器加载👆 -->
+    </div>
+    <!-- 背景图加载方式👇 -->
+    <div id="bgchoice" style="display: none">link
+                </div>
+                
+                <div id="bgurl" style="display:none">https://cdn.luogu.com.cn/upload/image_hosting/jslaf45m.png</div>
+                
+    <!-- 背景图加载方式👆 -->
+</body>
 
 <script>
-    var prevstr = document.getElementById("pagination-prev").innerHTML;
-    var nextstr = document.getElementById("pagination-next").innerHTML;
-    var page1 = document.getElementById("page1");
-    var page2 = document.getElementById("page2");
-    var page3 = document.getElementById("page3");
-    page1.innerHTML = '-';
-    page2.innerHTML = '1';
-    page3.innerHTML = '-';
-    if (prevstr.length > 5) {
-        if (prevstr.indexOf("page/") != -1) {
-            var prevnum = parseInt(prevstr.split("page/")[1]);
-            page1.innerHTML = prevnum;
-            page2.innerHTML = prevnum + 1;
-        } else {
-            page1.innerHTML = 1;
-            page2.innerHTML = 2;
-        }
-    }
-    if (nextstr.indexOf("page/") != -1) {
-        var nextnum = parseInt(nextstr.split("page/")[1]);
-        page3.innerHTML = nextnum;
-        page2.innerHTML = nextnum - 1;
-    }
+    //初始化
+    //更换twikoo头像
+    setTimeout(replaceAvatar,1000);
+    setTimeout(replaceAvatar,2000);
+    setTimeout(replaceAvatar,8000);
+    // --------为每张图片添加懒加载（lazyload）标签-->懒加载功能 👇------------
+    lazyload();
+    //为文章内所有代码块添加代码复制功能 👇
+    codeinit();
+    // ------代码高亮显示功能-------------
+    hljs.initHighlightingOnLoad();
+    if (shareChoice)
+        shareInit();
+    if (donateChoice)
+        donateInit();
 </script>
-                    </div>
-                </div>
-                <div class="col-md-1 col-lg-2"></div>
-                
-                <!-- ----------------左侧菜单栏html 👆-------------------------------------->
-                <!------------------ 顶部菜单栏html👇--------->
-                 
-                <!------------------ 顶部菜单栏html👆--------->
-                </div>
-            </div>
-            <div id="bg">
-            </div>
-            <!------- 背景图加载方式👇----- -->
-            <div id="bgchoice" style="display: none">link
-            </div>
-            
-            <div id="bgurl" style="display:none">https://cdn.luogu.com.cn/upload/image_hosting/jslaf45m.png</div>
-            
-            <!------- 背景图加载方式👆----- --> 
-        <div id="landlord">
-            <div class="message" style="opacity:0"></div>
-            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-        </div>
-    </div>
-        
-    <div id="domainname" style="display:none">https://woshisb-river.github.io
-        </div>
 
-<!-------------------- live2d功能👇 --------------------------->
-    
-<!-------------------- live2d功能👆 --------------------------->
+<!------------------ 加载live2d模型功能（看板娘）👇 ---------------->
+
+<!------------------ 加载live2d模型功能（看板娘）👆 ---------------->
+
+
+<!----------------------- 返回顶部按钮功能👇 --------------------->
+<script>
+    $(function () {
+        $('.toggleContainer').click(function () {
+            $('html,body').animate({
+                scrollTop: '0px'
+            }, 800);
+        });
+        $(window).scroll(function () {
+            var st = $(window).scrollTop();
+            if (st > 30) {
+                $(".toggleContainer").fadeIn(400);
+            } else {
+                $(".toggleContainer").fadeOut(100);
+            }
+        });
+    });
+</script>
+<!----------------------- 返回顶部按钮功能👆 --------------------->
+
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
@@ -1288,9 +1336,29 @@ menulist.eq(i).show();
 </script>
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
 
-        <script src="https://woshisb-river.github.io/media/js/index.js"></script>
-        
-</body>
-</html>
+
+
+<script src="https://woshisb-river.github.io/media/js/index.js"></script>
+
+
+<script>
+    //加载后的事件同步（阅读量、移动端评论等
+    window.onload = function () {
+    //代码块高亮渲染
+    document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+    });
+        getHotnum();
+        var sharepc = $(".share").eq(0).html();
+        $(".share").eq(1).html(sharepc);   //插件只会寻找一个分享标签渲染，所以需要手动添加到移动端
+        aplayerbtnInit();
+        $(".hljs").css({
+            "padding": "20px"
+        })
+    }
+</script>
+
+<!-- <script src="https://woshisb-river.github.io/media/js/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.13.0/dist/av-min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-live-query-min.js"></script> -->

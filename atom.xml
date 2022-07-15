@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://woshisb-river.github.io</id>
     <title>River</title>
-    <updated>2022-07-12T07:28:30.070Z</updated>
+    <updated>2022-07-15T02:06:53.135Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://woshisb-river.github.io"/>
     <link rel="self" href="https://woshisb-river.github.io/atom.xml"/>
@@ -10,6 +10,221 @@
     <logo>https://woshisb-river.github.io/images/avatar.png</logo>
     <icon>https://woshisb-river.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, River</rights>
+    <entry>
+        <title type="html"><![CDATA[7.13小结]]></title>
+        <id>https://woshisb-river.github.io/post/713-xiao-jie/</id>
+        <link href="https://woshisb-river.github.io/post/713-xiao-jie/">
+        </link>
+        <updated>2022-07-13T01:40:30.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="t1">T1</h2>
+<p>这边要求路径最大边的边权最小，所以考虑像货车运输利用最小生成树来建图，因为易证这样的路径一定在最小生成树上。</p>
+<p>但题目中有个加边的操作，刚看到时没思路，但看到数据范围 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>d</mi><mi>d</mi><mo>≤</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">add \leq 1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> ，所以考虑每一次加边，就可以将边加入最小生成树的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 条边，一起再跑一遍最小生成树即可。</p>
+<p>再考虑最后的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>i</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">nim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span></span></span></span> 游戏，将两堆石子异或就好，如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，先手必败，否则必胜。</p>
+<p>就是实现有点难</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+struct street
+{	int x,y,z;
+}s[150005],now[150005];
+struct bb
+{	int nextt,to,w;
+}op[300005];
+int n,m,q,head[5005],lg[5005],cnt,f[5005][20],dep[5005],maxn[5005][20],tot,gs,fa[5005];
+inline bool cmp(street a,street b)
+{	return a.z&lt;b.z;
+}
+int find(int x)
+{	return fa[x]==x?x:fa[x]=find(fa[x]);
+}
+inline void add(int x,int y,int z)
+{	op[++cnt].nextt=head[x];
+	op[cnt].to=y;
+	op[cnt].w=z;
+	head[x]=cnt;
+}
+void dfs(int x,int fa,int z)
+{	//cerr&lt;&lt;x;
+	f[x][0]=fa;
+	maxn[x][0]=z;
+	dep[x]=dep[fa]+1;
+	for(register int i=1;i&lt;=lg[dep[x]]-1;++i)f[x][i]=f[f[x][i-1]][i-1],maxn[x][i]=max(maxn[x][i-1],maxn[f[x][i-1]][i-1]);
+	for(register int i=head[x];i;i=op[i].nextt)
+	{	int y=op[i].to;
+		if(y!=fa)dfs(y,x,op[i].w);
+	}
+}
+inline int lca(int x,int y)
+{	int maxnn=0;
+	if(dep[x]&lt;dep[y])swap(x,y);
+	while(dep[x]&gt;dep[y])maxnn=max(maxnn,maxn[x][lg[dep[x]-dep[y]]-1]),x=f[x][lg[dep[x]-dep[y]]-1];
+	if(x==y)return maxnn;
+	for(register int i=lg[dep[x]]-1;i&gt;=0;--i)
+		if(f[x][i]!=f[y][i])maxnn=max(maxnn,max(maxn[x][i],maxn[y][i])),x=f[x][i],y=f[y][i];
+	maxnn=max(maxnn,max(maxn[x][0],maxn[y][0]));
+	return maxnn;
+}
+void Kru()
+{	tot=0;
+	sort(s+1,s+gs+1,cmp);
+	for(register int i=1;i&lt;=n;++i)fa[i]=i;
+	for(register int i=1;i&lt;=gs;++i)
+	{	int fx=find(s[i].x),fy=find(s[i].y);
+		if(fx==fy)continue;
+		fa[fy]=fx;
+		now[++tot]=s[i];
+		if(tot==n-1)break;
+	}
+	gs=tot;
+	for(register int i=1;i&lt;=tot;++i)s[i]=now[i];
+	cnt=0,memset(head,0,sizeof(head)),memset(f,0,sizeof(f)),memset(maxn,0,sizeof(f)),memset(dep,0,sizeof(dep));
+	for(register int i=1;i&lt;=tot;++i)
+	{	int x=now[i].x,y=now[i].y,z=now[i].z;
+		add(x,y,z),add(y,x,z);
+	}
+	dfs(1,0,0);
+}
+signed main()
+{   n=read(),m=read();
+	for(register int i=1;i&lt;=n;++i)lg[i]=lg[i-1]+((1&lt;&lt;lg[i-1])==i);
+	for(register int i=1;i&lt;=m;++i)s[i].x=read(),s[i].y=read(),s[i].z=read();
+	gs=m;
+	q=read();
+	bool flag=1;
+	Kru();
+	for(register int i=1;i&lt;=q;++i)
+	{	char c;
+		cin&gt;&gt;c;
+		if(c=='a')
+		{	flag=0;
+			s[++gs].x=read(),s[gs].y=read(),s[gs].z=read();
+		}
+		else
+		{	if(!flag)Kru(),flag=1;
+			int m1=read(),m2=read(),b1=read(),b2=read();
+			if(lca(m1,m2)==lca(b1,b2))printf(&quot;Baozika\n&quot;);
+			else printf(&quot;madoka\n&quot;);
+		}
+	}
+	return 0;
+}
+</code></pre>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="t1">T1</h2>
+<p>这边要求路径最大边的边权最小，所以考虑像货车运输利用最小生成树来建图，因为易证这样的路径一定在最小生成树上。</p>
+<p>但题目中有个加边的操作，刚看到时没思路，但看到数据范围 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>d</mi><mi>d</mi><mo>≤</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">add \leq 1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> ，所以考虑每一次加边，就可以将边加入最小生成树的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 条边，一起再跑一遍最小生成树即可。</p>
+<p>再考虑最后的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>i</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">nim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span></span></span></span> 游戏，将两堆石子异或就好，如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，先手必败，否则必胜。</p>
+<p>就是实现有点难</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+struct street
+{	int x,y,z;
+}s[150005],now[150005];
+struct bb
+{	int nextt,to,w;
+}op[300005];
+int n,m,q,head[5005],lg[5005],cnt,f[5005][20],dep[5005],maxn[5005][20],tot,gs,fa[5005];
+inline bool cmp(street a,street b)
+{	return a.z&lt;b.z;
+}
+int find(int x)
+{	return fa[x]==x?x:fa[x]=find(fa[x]);
+}
+inline void add(int x,int y,int z)
+{	op[++cnt].nextt=head[x];
+	op[cnt].to=y;
+	op[cnt].w=z;
+	head[x]=cnt;
+}
+void dfs(int x,int fa,int z)
+{	//cerr&lt;&lt;x;
+	f[x][0]=fa;
+	maxn[x][0]=z;
+	dep[x]=dep[fa]+1;
+	for(register int i=1;i&lt;=lg[dep[x]]-1;++i)f[x][i]=f[f[x][i-1]][i-1],maxn[x][i]=max(maxn[x][i-1],maxn[f[x][i-1]][i-1]);
+	for(register int i=head[x];i;i=op[i].nextt)
+	{	int y=op[i].to;
+		if(y!=fa)dfs(y,x,op[i].w);
+	}
+}
+inline int lca(int x,int y)
+{	int maxnn=0;
+	if(dep[x]&lt;dep[y])swap(x,y);
+	while(dep[x]&gt;dep[y])maxnn=max(maxnn,maxn[x][lg[dep[x]-dep[y]]-1]),x=f[x][lg[dep[x]-dep[y]]-1];
+	if(x==y)return maxnn;
+	for(register int i=lg[dep[x]]-1;i&gt;=0;--i)
+		if(f[x][i]!=f[y][i])maxnn=max(maxnn,max(maxn[x][i],maxn[y][i])),x=f[x][i],y=f[y][i];
+	maxnn=max(maxnn,max(maxn[x][0],maxn[y][0]));
+	return maxnn;
+}
+void Kru()
+{	tot=0;
+	sort(s+1,s+gs+1,cmp);
+	for(register int i=1;i&lt;=n;++i)fa[i]=i;
+	for(register int i=1;i&lt;=gs;++i)
+	{	int fx=find(s[i].x),fy=find(s[i].y);
+		if(fx==fy)continue;
+		fa[fy]=fx;
+		now[++tot]=s[i];
+		if(tot==n-1)break;
+	}
+	gs=tot;
+	for(register int i=1;i&lt;=tot;++i)s[i]=now[i];
+	cnt=0,memset(head,0,sizeof(head)),memset(f,0,sizeof(f)),memset(maxn,0,sizeof(f)),memset(dep,0,sizeof(dep));
+	for(register int i=1;i&lt;=tot;++i)
+	{	int x=now[i].x,y=now[i].y,z=now[i].z;
+		add(x,y,z),add(y,x,z);
+	}
+	dfs(1,0,0);
+}
+signed main()
+{   n=read(),m=read();
+	for(register int i=1;i&lt;=n;++i)lg[i]=lg[i-1]+((1&lt;&lt;lg[i-1])==i);
+	for(register int i=1;i&lt;=m;++i)s[i].x=read(),s[i].y=read(),s[i].z=read();
+	gs=m;
+	q=read();
+	bool flag=1;
+	Kru();
+	for(register int i=1;i&lt;=q;++i)
+	{	char c;
+		cin&gt;&gt;c;
+		if(c=='a')
+		{	flag=0;
+			s[++gs].x=read(),s[gs].y=read(),s[gs].z=read();
+		}
+		else
+		{	if(!flag)Kru(),flag=1;
+			int m1=read(),m2=read(),b1=read(),b2=read();
+			if(lca(m1,m2)==lca(b1,b2))printf(&quot;Baozika\n&quot;);
+			else printf(&quot;madoka\n&quot;);
+		}
+	}
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<h2 id="t2">T2</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[omgod]]></title>
         <id>https://woshisb-river.github.io/post/omgod/</id>
