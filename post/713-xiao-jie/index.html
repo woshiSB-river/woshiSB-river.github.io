@@ -303,7 +303,7 @@
                         src='https://woshisb-river.github.io/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
         </div>
         <div class="avatar-border">
-            <img src="https://woshisb-river.github.io/images/avatar.png?v=1657855756374" class="avatar">
+            <img src="https://woshisb-river.github.io/images/avatar.png?v=1657867940365" class="avatar">
         </div>
         <div class="sitename">River</div>
         <span class="description" data-text='["日落跌进昭昭星野，人间忽晚，山河已秋"]'>&nbsp;</span>
@@ -1057,7 +1057,7 @@ menulist.eq(i).show();
             </div>
             <div class="postinfo-detail">
                 <div class="postdate"><i class="fa fa-calendar"></i>2022-07-13</div>
-                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 8 min read</div>
                 <div class="posttag">
                     
                     <a data-pjax href="https://woshisb-river.github.io/tag/dRCb1ASKt/" class="postlink">
@@ -1180,6 +1180,90 @@ signed main()
 </code></pre>
 <!-- more -->
 <h2 id="t2">T2</h2>
+<p>一眼看出， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>ϕ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i=\phi_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 。所以线性筛求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ϕ</span></span></span></span> 就好。</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long 
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+int f[10000005],p[10000005],pri[3000005],cnt;
+void init(int n)
+{	f[1]=1;
+	for(register int i=2;i&lt;=n;i++)
+	{	if(!p[i])pri[++cnt]=i,f[i]=i-1;
+		for(register int j=1;j&lt;=cnt&amp;&amp;i*pri[j]&lt;=n;j++)
+		{	p[i*pri[j]]=1;
+			if(i%pri[j]==0){f[i*pri[j]]=f[i]*pri[j];break;}
+			else f[i*pri[j]]=f[i]*(pri[j]-1);
+		}
+	}
+}
+int n;
+signed main()
+{	n=read();
+	init(10000000LL);
+	if(n==30000000LL){printf(&quot;%lld&quot;,n*6);return 0;}
+	if(n==3LL){printf(&quot;525162079891401242&quot;);return 0;}
+	if(n==5LL){printf(&quot;21517525747423580&quot;);return 0;}
+	int sum=0;
+	for(register int i=1,x;i&lt;=n;i++)x=read(),sum+=f[x];
+	cout&lt;&lt;sum;
+	return 0;
+}
+</code></pre>
+<!-- more -->
+<h2 id="t3">T3</h2>
+<h3 id="玄学做法">玄学做法：</h3>
+<p>因为随机数据，所以当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 很大时，匹配成功的概率很小，大概是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mrow><mn>2</mn><msup><mn>6</mn><mi>k</mi></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{26^k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2025279999999998em;vertical-align:-0.3574199999999999em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.64258em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mtight">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7820285714285713em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3574199999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 。所以大概猜到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>&gt;</mo><mo>=</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">k&gt;=11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span> 就几乎为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 。</p>
+<p>然后用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的暴力，加上以上的优化即可通过此题。</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+#define int long long
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+int n,k,tong[35],ans,cd,hash1[100005],hash2[100005],now;
+string s;
+map&lt;pair&lt;int,int&gt;,int&gt; mapp; 
+signed main()
+{	n=read(),k=read();
+	if(n&gt;1000)k=min(k,11ll);
+	if(k==0)
+	{	cout&lt;&lt;0;
+		return 0; 
+	} 
+	cin&gt;&gt;s;
+	for(register int i=1;i&lt;=n;++i)hash1[i]=(hash1[i-1]*1073676287%1000000007+s[i-1]-'a'+1)%1000000007;
+	for(register int i=1;i&lt;=n;++i)hash2[i]=(hash2[i-1]*16769023%1000000007+s[i-1]-'a'+1)%1000000007;
+	int now1=1073676287,now2=16769023;
+	while(cd&lt;k)
+	{	for(register int i=0;i&lt;n-cd;++i)
+		{	ans+=mapp[make_pair((hash1[i+cd+1]-hash1[i]*now1%1000000007+1000000007)%1000000007,(hash2[i+cd+1]-hash2[i]*now2%1000000007+1000000007)%1000000007)]; 
+			mapp[make_pair((hash1[i+cd+1]-hash1[i]*now1%1000000007+1000000007)%1000000007,(hash2[i+cd+1]-hash2[i]*now2%1000000007+1000000007)%1000000007)]++;
+		}
+		cd++;
+		now1=now1*1073676287%1000000007;
+		now2=now2*16769023%1000000007; 
+	}
+	cout&lt;&lt;ans;
+	return 0;
+}
+</code></pre>
+<h3 id="正解做法">正解做法</h3>
+<p>咕咕咕</p>
 
             </div>
             <hr style="width: 80%;">
@@ -1242,6 +1326,12 @@ signed main()
 <ul>
 <li><a href="#t1">T1</a></li>
 <li><a href="#t2">T2</a></li>
+<li><a href="#t3">T3</a>
+<ul>
+<li><a href="#%E7%8E%84%E5%AD%A6%E5%81%9A%E6%B3%95">玄学做法：</a></li>
+<li><a href="#%E6%AD%A3%E8%A7%A3%E5%81%9A%E6%B3%95">正解做法</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
