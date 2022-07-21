@@ -2,9 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="T1
-这边要求路径最大边的边权最小，所以考虑像货车运输利用最小生成树来建图，因为易证这样的路径一定在最小生成树上。
-但题目中有个加边的操作，刚看到时没思路，但看到数据范围 add≤1000add \leq 1000add≤1000 ，所以考..." />
+    <meta name="description" content="咕咕咕
+" />
     <meta name="keywords" content="小结" />
     <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
@@ -47,7 +46,7 @@
         });
     </script>
     
-    <title>7.13小结</title>
+    <title>7.20小结</title>
 
     <!-- 大纲索引css调整 -->
     
@@ -1081,11 +1080,11 @@ menulist.eq(i).show();
         <div class="postshow postpadding" style="padding-bottom: 0;">
             
             <div class="postdetailimg">
-                <img src="https://woshisb-river.github.io/post-images/713-xiao-jie.png" class="postimage" style="cursor:auto">
+                <img src="https://woshisb-river.github.io/post-images/720-xiao-jie.jpg" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
-                <div class="postdate"><i class="fa fa-calendar"></i>2022-07-13</div>
-                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 8 min read</div>
+                <div class="postdate"><i class="fa fa-calendar"></i>2022-07-20</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 1 min read</div>
                 <div class="posttag">
                     
                     <a data-pjax href="https://woshisb-river.github.io/tag/dRCb1ASKt/" class="postlink">
@@ -1097,201 +1096,14 @@ menulist.eq(i).show();
             
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2 id="ptitle">7.13小结</h2>
+                <h2 id="ptitle">7.20小结</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://woshisb-river.github.io/post/713-xiao-jie/</div>
+                <div id="pl" style="display:none">https://woshisb-river.github.io/post/720-xiao-jie/</div>
                 <div id="rootaddr" style="display:none">https://woshisb-river.github.io</div>
                 
             </div>
             <div class="text ">
-                <h2 id="t1">T1</h2>
-<p>这边要求路径最大边的边权最小，所以考虑像货车运输利用最小生成树来建图，因为易证这样的路径一定在最小生成树上。</p>
-<p>但题目中有个加边的操作，刚看到时没思路，但看到数据范围 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>d</mi><mi>d</mi><mo>≤</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">add \leq 1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span> ，所以考虑每一次加边，就可以将边加入最小生成树的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 条边，一起再跑一遍最小生成树即可。</p>
-<p>再考虑最后的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi>i</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">nim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span></span></span></span> 游戏，将两堆石子异或就好，如果是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，先手必败，否则必胜。</p>
-<p>就是实现有点难</p>
-<p><strong>上菜</strong></p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-#define int long long
-inline int read()
-{	int x=0;
-	bool f=0;
-	char c=getchar();
-	while(!isdigit(c))f|=(c=='-'),c=getchar();
-	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
-	return f?-x:x;
-}
-using namespace std;
-struct street
-{	int x,y,z;
-}s[150005],now[150005];
-struct bb
-{	int nextt,to,w;
-}op[300005];
-int n,m,q,head[5005],lg[5005],cnt,f[5005][20],dep[5005],maxn[5005][20],tot,gs,fa[5005];
-inline bool cmp(street a,street b)
-{	return a.z&lt;b.z;
-}
-int find(int x)
-{	return fa[x]==x?x:fa[x]=find(fa[x]);
-}
-inline void add(int x,int y,int z)
-{	op[++cnt].nextt=head[x];
-	op[cnt].to=y;
-	op[cnt].w=z;
-	head[x]=cnt;
-}
-void dfs(int x,int fa,int z)
-{	//cerr&lt;&lt;x;
-	f[x][0]=fa;
-	maxn[x][0]=z;
-	dep[x]=dep[fa]+1;
-	for(register int i=1;i&lt;=lg[dep[x]]-1;++i)f[x][i]=f[f[x][i-1]][i-1],maxn[x][i]=max(maxn[x][i-1],maxn[f[x][i-1]][i-1]);
-	for(register int i=head[x];i;i=op[i].nextt)
-	{	int y=op[i].to;
-		if(y!=fa)dfs(y,x,op[i].w);
-	}
-}
-inline int lca(int x,int y)
-{	int maxnn=0;
-	if(dep[x]&lt;dep[y])swap(x,y);
-	while(dep[x]&gt;dep[y])maxnn=max(maxnn,maxn[x][lg[dep[x]-dep[y]]-1]),x=f[x][lg[dep[x]-dep[y]]-1];
-	if(x==y)return maxnn;
-	for(register int i=lg[dep[x]]-1;i&gt;=0;--i)
-		if(f[x][i]!=f[y][i])maxnn=max(maxnn,max(maxn[x][i],maxn[y][i])),x=f[x][i],y=f[y][i];
-	maxnn=max(maxnn,max(maxn[x][0],maxn[y][0]));
-	return maxnn;
-}
-void Kru()
-{	tot=0;
-	sort(s+1,s+gs+1,cmp);
-	for(register int i=1;i&lt;=n;++i)fa[i]=i;
-	for(register int i=1;i&lt;=gs;++i)
-	{	int fx=find(s[i].x),fy=find(s[i].y);
-		if(fx==fy)continue;
-		fa[fy]=fx;
-		now[++tot]=s[i];
-		if(tot==n-1)break;
-	}
-	gs=tot;
-	for(register int i=1;i&lt;=tot;++i)s[i]=now[i];
-	cnt=0,memset(head,0,sizeof(head)),memset(f,0,sizeof(f)),memset(maxn,0,sizeof(f)),memset(dep,0,sizeof(dep));
-	for(register int i=1;i&lt;=tot;++i)
-	{	int x=now[i].x,y=now[i].y,z=now[i].z;
-		add(x,y,z),add(y,x,z);
-	}
-	dfs(1,0,0);
-}
-signed main()
-{   n=read(),m=read();
-	for(register int i=1;i&lt;=n;++i)lg[i]=lg[i-1]+((1&lt;&lt;lg[i-1])==i);
-	for(register int i=1;i&lt;=m;++i)s[i].x=read(),s[i].y=read(),s[i].z=read();
-	gs=m;
-	q=read();
-	bool flag=1;
-	Kru();
-	for(register int i=1;i&lt;=q;++i)
-	{	char c;
-		cin&gt;&gt;c;
-		if(c=='a')
-		{	flag=0;
-			s[++gs].x=read(),s[gs].y=read(),s[gs].z=read();
-		}
-		else
-		{	if(!flag)Kru(),flag=1;
-			int m1=read(),m2=read(),b1=read(),b2=read();
-			if(lca(m1,m2)==lca(b1,b2))printf(&quot;Baozika\n&quot;);
-			else printf(&quot;madoka\n&quot;);
-		}
-	}
-	return 0;
-}
-</code></pre>
-<!-- more -->
-<h2 id="t2">T2</h2>
-<p>一眼看出， <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><msub><mi>ϕ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_i=\phi_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">ϕ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 。所以线性筛求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">\phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">ϕ</span></span></span></span> 就好。</p>
-<p><strong>上菜</strong></p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-#define int long long 
-inline int read()
-{	int x=0;
-	bool f=0;
-	char c=getchar();
-	while(!isdigit(c))f|=(c=='-'),c=getchar();
-	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
-	return f?-x:x;
-}
-using namespace std;
-int f[10000005],p[10000005],pri[3000005],cnt;
-void init(int n)
-{	f[1]=1;
-	for(register int i=2;i&lt;=n;i++)
-	{	if(!p[i])pri[++cnt]=i,f[i]=i-1;
-		for(register int j=1;j&lt;=cnt&amp;&amp;i*pri[j]&lt;=n;j++)
-		{	p[i*pri[j]]=1;
-			if(i%pri[j]==0){f[i*pri[j]]=f[i]*pri[j];break;}
-			else f[i*pri[j]]=f[i]*(pri[j]-1);
-		}
-	}
-}
-int n;
-signed main()
-{	n=read();
-	init(10000000LL);
-	if(n==30000000LL){printf(&quot;%lld&quot;,n*6);return 0;}
-	if(n==3LL){printf(&quot;525162079891401242&quot;);return 0;}
-	if(n==5LL){printf(&quot;21517525747423580&quot;);return 0;}
-	int sum=0;
-	for(register int i=1,x;i&lt;=n;i++)x=read(),sum+=f[x];
-	cout&lt;&lt;sum;
-	return 0;
-}
-</code></pre>
-<!-- more -->
-<h2 id="t3">T3</h2>
-<h3 id="玄学做法">玄学做法：</h3>
-<p>因为随机数据，所以当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 很大时，匹配成功的概率很小，大概是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mn>1</mn><mrow><mn>2</mn><msup><mn>6</mn><mi>k</mi></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{26^k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2025279999999998em;vertical-align:-0.3574199999999999em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.64258em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mtight">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7820285714285713em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3574199999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 。所以大概猜到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>&gt;</mo><mo>=</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">k&gt;=11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span> 就几乎为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 。</p>
-<p>然后用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的暴力，加上以上的优化即可通过此题。</p>
-<p><strong>上菜</strong></p>
-<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
-#define int long long
-inline int read()
-{	int x=0;
-	bool f=0;
-	char c=getchar();
-	while(!isdigit(c))f|=(c=='-'),c=getchar();
-	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
-	return f?-x:x;
-}
-using namespace std;
-int n,k,tong[35],ans,cd,hash1[100005],hash2[100005],now;
-string s;
-map&lt;pair&lt;int,int&gt;,int&gt; mapp; 
-signed main()
-{	n=read(),k=read();
-	if(n&gt;1000)k=min(k,11ll);
-	if(k==0)
-	{	cout&lt;&lt;0;
-		return 0; 
-	} 
-	cin&gt;&gt;s;
-	for(register int i=1;i&lt;=n;++i)hash1[i]=(hash1[i-1]*1073676287%1000000007+s[i-1]-'a'+1)%1000000007;
-	for(register int i=1;i&lt;=n;++i)hash2[i]=(hash2[i-1]*16769023%1000000007+s[i-1]-'a'+1)%1000000007;
-	int now1=1073676287,now2=16769023;
-	while(cd&lt;k)
-	{	for(register int i=0;i&lt;n-cd;++i)
-		{	ans+=mapp[make_pair((hash1[i+cd+1]-hash1[i]*now1%1000000007+1000000007)%1000000007,(hash2[i+cd+1]-hash2[i]*now2%1000000007+1000000007)%1000000007)]; 
-			mapp[make_pair((hash1[i+cd+1]-hash1[i]*now1%1000000007+1000000007)%1000000007,(hash2[i+cd+1]-hash2[i]*now2%1000000007+1000000007)%1000000007)]++;
-		}
-		cd++;
-		now1=now1*1073676287%1000000007;
-		now2=now2*16769023%1000000007; 
-	}
-	cout&lt;&lt;ans;
-	return 0;
-}
-</code></pre>
-<h3 id="正解做法">正解做法</h3>
-<p>咕咕咕</p>
+                <p>咕咕咕</p>
 
             </div>
             <hr style="width: 80%;">
@@ -1299,7 +1111,7 @@ signed main()
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong>woshiSB</li>
-            <li><strong>原文链接：</strong>https://woshisb-river.github.io/post/713-xiao-jie/</li>
+            <li><strong>原文链接：</strong>https://woshisb-river.github.io/post/720-xiao-jie/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
@@ -1307,29 +1119,17 @@ signed main()
         
         <div id="otherpost">
             
-            <a  data-pjax class="prev-post-pc" href="https://woshisb-river.github.io/post/714-xiao-jie/"  style="color: black;">
-                <div id="ppcontainer">
-                    
-                    <img src="https://woshisb-river.github.io/post-images/714-xiao-jie.png" style="width: 100%;" class="opimg">
-                    
-                    <h4 class="optitle">7.14小结</h4>
-                </div>
-            </a>
-            <div class="prev-post">
-                上一篇 <a  data-pjax href="https://woshisb-river.github.io/post/714-xiao-jie/">7.14小结</a>
-            </div>
             
-            
-            <a data-pjax class="next-post-pc" href="https://woshisb-river.github.io/post/711-xiao-jie/"  style="color: black;">
+            <a data-pjax class="next-post-pc" href="https://woshisb-river.github.io/post/sam/"  style="color: black;">
                 <div id="npcontainer">
                     
-                    <img src="https://woshisb-river.github.io/post-images/711-xiao-jie.png" style="width: 100%;" class="opimg">
+                    <img src="https://woshisb-river.github.io/post-images/sam.png" style="width: 100%;" class="opimg">
                     
-                    <h4 class="optitle">7.11小结</h4>
+                    <h4 class="optitle">SAM</h4>
                 </div>
             </a>
             <div class="next-post">
-                下一篇 <a  data-pjax href="https://woshisb-river.github.io/post/711-xiao-jie/">7.11小结</a>
+                下一篇 <a  data-pjax href="https://woshisb-river.github.io/post/sam/">SAM</a>
             </div>
             
         </div>
@@ -1349,21 +1149,7 @@ signed main()
     $("#hotnum").attr('id', pl);
 </script>
                     <div class="toc-container">
-                        <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#t1">T1</a></li>
-<li><a href="#t2">T2</a></li>
-<li><a href="#t3">T3</a>
-<ul>
-<li><a href="#%E7%8E%84%E5%AD%A6%E5%81%9A%E6%B3%95">玄学做法：</a></li>
-<li><a href="#%E6%AD%A3%E8%A7%A3%E5%81%9A%E6%B3%95">正解做法</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+                        
                     </div>
                     <div class="tog">
                         <div class="toggleContainer">
