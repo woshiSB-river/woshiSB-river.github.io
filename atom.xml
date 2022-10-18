@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://woshisb-river.github.io</id>
+    <title>Rivers</title>
+    <updated>2022-10-18T09:02:12.592Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://woshisb-river.github.io"/>
+    <link rel="self" href="https://woshisb-river.github.io/atom.xml"/>
+    <subtitle>他朝若是同淋雪，此生也算共白头</subtitle>
+    <logo>https://woshisb-river.github.io/images/avatar.png</logo>
+    <icon>https://woshisb-river.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Rivers</rights>
+    <entry>
+        <title type="html"><![CDATA[10.18]]></title>
+        <id>https://woshisb-river.github.io/post/1018/</id>
+        <link href="https://woshisb-river.github.io/post/1018/">
+        </link>
+        <updated>2022-10-18T08:57:14.000Z</updated>
+        <content type="html"><![CDATA[<p>.</p>
+]]></content>
+    </entry>
+</feed>
