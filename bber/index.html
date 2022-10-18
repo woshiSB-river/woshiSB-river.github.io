@@ -53,7 +53,7 @@ $(document).ready(function(){
     <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
     
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/dracula.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/default.min.css">
     
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/850552586/ericamcdn@0.1/js/clipboard.min.js"></script>
@@ -114,6 +114,141 @@ $(document).ready(function(){
 
     <!--------------- 左侧菜单栏👇 ------------------------>
     
+    <div id=side>
+        <div class="r_m_div">
+            <a onclick="showAaplayer()"><i style="font-size: 20px;"><img
+                        src='https://woshisb-river.github.io/media/images/music.png' alt="音乐播放器" class="musicbtn"></i></a>
+        </div>
+        <div class="avatar-border">
+            <img src="https://woshisb-river.github.io/images/avatar.png?v=1666092178370" class="avatar">
+        </div>
+        <div class="sitename">Rivers</div>
+        <span class="description" data-text='["他朝若是同淋雪，此生也算共白头"]'>&nbsp;</span>
+        <div class="siteinfocontainer">
+            <span class="siteinfo">文章</span>
+            <span class="siteinfo">标签</span>
+        </div>
+        <div class="siteinfocontainer">
+            <span class="siteinfo" id="siteinfo-postsnum"></span>
+            <span class="siteinfo">0</span>
+        </div>
+        
+        <div class="search">
+            <!-- <input type="text" class="search-input" placeholder="标题搜索(●'◡'●)" /> -->
+            <input type="text" class="search-input" placeholder="标题搜索 ⚆_⚆ つ♡">
+            <div class="search-results"></div>
+        </div>
+        
+    <div class="share-button">
+        <span></span>
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+    <div id="qq" style="display:none"></div>
+    <!------------ 加载菜单按钮👇 ------------------------->
+    <div class="menucontainer">
+        
+        
+        <div class="mchocie description">
+            <a data-pjax href="/" class="menubutton" style="margin-right: 15px;">
+                <i><img class="icon menuicon" src="" alt="首页"></i>&nbsp;<span
+                    data-text="首页">首页</span>
+            </a>
+        </div>
+        
+        
+        
+        <div class="mchocie description">
+            <a data-pjax href="/archives" class="menubutton" style="margin-right: 15px;">
+                <i><img class="icon menuicon" src="" alt="归档"></i>&nbsp;<span
+                    data-text="归档">归档</span>
+            </a>
+        </div>
+        
+        
+        
+        <div class="mchocie description">
+            <a data-pjax href="/tags" class="menubutton" style="margin-right: 15px;">
+                <i><img class="icon menuicon" src="" alt="标签"></i>&nbsp;<span
+                    data-text="标签">标签</span>
+            </a>
+        </div>
+        
+        
+        
+        <div class="mchocie description">
+            <a data-pjax href="/post/about" class="menubutton" style="margin-right: 15px;">
+                <i><img class="icon menuicon" src="" alt="关于"></i>&nbsp;<span
+                    data-text="关于">关于</span>
+            </a>
+        </div>
+        
+        
+
+        
+        
+        
+        <div class="mchocie description">
+            <a data-pjax href="https://woshisb-river.github.io/friends" class="menubutton" style="margin-right: 15px;">
+                <i><img class="icon menuicon" src="" alt="友人帐"></i>&nbsp;<span data-text="友人帐">友人帐</span>
+            </a>
+        </div>
+        
+        <!--  -->
+    </div>
+    <!------------ 加载菜单按钮👆 ------------------------->
+    <hr>
+    <style>
+    .copyright {
+        font-size: 15px;
+        color: #d9d9d9;
+    }
+
+
+    @media screen and (min-width: 1200px) {
+        .foot {
+            width: 100%;
+            height: 130px;
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        .foot {
+            display: none;
+        }
+    }
+</style>
+
+<body>
+    <div class="foot">
+        <div id="footinfo">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | Theme: <a
+                href="https://github.com/850552586/gridea-theme-fog">Fog</a>
+            <div>
+                
+            </div>
+            <div>
+                
+            </div>
+            <div class="copyright" style="color:white;text-align: center;">Copyright © 2020  备案号: 鄂ICP备...号
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+
+    </div>
+
+    <img class="moon" src="https://woshisb-river.github.io/media/images/moon.png" onclick="moonlight()">
+    <script src="https://woshisb-river.github.io/media/js/wordshow.js"></script>
+    
     <!--------------- 左侧菜单栏👆 ------------------------>
 
     <!----------------- 顶部菜单栏👇 ------------------------>
@@ -155,8 +290,8 @@ $(document).ready(function(){
 <!------------- Fog1.0版本彩蛋👆 -------------->
 <script>
     function change_topmenu(){
-        tmcolor = ""
-        tsnamecolor = ""
+        tmcolor = "antiquewhite"
+        tsnamecolor = "antiquewhite"
         $(".navbar-inverse .navbar-nav>li>a").css("color",tmcolor)
         $(".navbar-inverse .navbar-brand").css("color",tsnamecolor)
         $(".navbar-fixed-top").css("border-radius","0 0 10px 10px")
@@ -181,7 +316,7 @@ $(document).ready(function(){
     
     
     <script>
-        var searchChoice = false
+        var searchChoice = true
     </script>
     
     <script>let postsnum = 0;</script>
@@ -212,6 +347,8 @@ $(document).ready(function(){
         var icondict = new Array();
     </script>
     
+        
+    
     <!----------根据自定义配置设置图标信息👆---------->
 </body>
 
@@ -229,7 +366,7 @@ $(document).ready(function(){
     get();
 
     function get() {
-        var t = JSON.parse('');
+        var t = JSON.parse('[]');
         talkindex = t.length - 1;
         for (var i = 0; i <= t.length - 1; i++) {
             var d = {};
@@ -420,13 +557,13 @@ $(document).ready(function(){
                 shareInit();
             if (donateChoice)
                 donateInit();
-            if ("" == "default"&&!commentsHide) {
+            if ("default" == "default"&&!commentsHide) {
                 $("#comment").hide()
                 commentsHide = true
             }
             lazyload();
             codeinit();
-            if ("" == "twikoo") {
+            if ("default" == "twikoo") {
                 //twikoo头像更换
                 setTimeout(replaceAvatar, 3000);
                 setTimeout(replaceAvatar, 8000); //部分博主站点速度加载过慢，再添加一个延迟
@@ -688,6 +825,15 @@ menulist.eq(i).show();
 <!----夜间模式👆--></div>
                 <!-- ----------------左侧菜单栏html 👇-------------------------------------->
                 
+                <div id="tab1" class="tab">
+                    <div class="bars">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="close"></div>
+                </div>
+                <div class="col-md-1 col-lg-3"></div>
                 <div class="mobilebar"><style>
   .navmobile {
     z-index: 15;
@@ -779,6 +925,9 @@ menulist.eq(i).show();
         
         
           
+        <li><a data-pjax href="https://woshisb-river.github.io/friends" style="color:white">友链</a></li>
+
+        
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -815,13 +964,13 @@ menulist.eq(i).show();
     }
   </script> 
                 </div>
-                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-6 topindex">
+                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
                     <div class="mobilebar">
                         <img src="" alt="" class="plbg">
 <script>
-    var bgchoice = "";
+    var bgchoice = "link";
     if(bgchoice=='default')
-        var plbgurl = ""
+        var plbgurl = "/media/images/custom-mobilebg.jpg"
     else  
         var plbgurl = ""
     $(".plbg").attr("src",plbgurl);
@@ -837,7 +986,7 @@ menulist.eq(i).show();
     <!-- 解析微信表情（参考：https://github.com/buddys/qq-wechat-emotion-parser） -->
     <!-- <script src="https://cdn.jsdelivr.net/gh/buddys/qq-wechat-emotion-parser@master/dist/qq-wechat-emotion-parser.min.js"></script> -->
 <script>
-    var limitstr = ''
+    var limitstr = '5'
     lnum = parseInt(limitstr)
     ispeakBber.init({
             el: '#speak', // 容器选择器
@@ -847,7 +996,7 @@ menulist.eq(i).show();
             limit: lnum, // 每次加载的条数，默认为5
             avatar: '',
             fromColor: 'rgb(245, 150, 170)', // 下方标签背景颜色 默认 rgb(245, 150, 170)
-            loadingImg: '', // 自定义loading的图片，示例值为默认值
+            loadingImg: 'https://7.dusays.com/2021/03/04/d2d5e983e2961.gif', // 自定义loading的图片，示例值为默认值
             dbName: 'talks' // 数据的名称，默认talks，避免有人的命名不是这个，所以加入此配置字段。
         })
         .then(function () {
@@ -857,12 +1006,17 @@ menulist.eq(i).show();
 </script>
                     <!---------------------------- 评论系统👇 ------------------------->
                     <div id="comment" class="comment">
-                      <div class="commentcontainer">
-                         
-                        </div>
-                    </div>
-                   <!---------------------------- 评论系统👆 ------------------------->
+                        <div class="commentcontainer">
+                           
+                                    
+                              
+                          </div>
+                      </div>
+                     <!---------------------------- 评论系统👆 ------------------------->
                 </div>
+                <div class="col-md-1 col-lg-2"></div>
+                <!-- ----------------左侧菜单栏html 👆-------------------------------------->
+                <!------------------ 顶部菜单栏html👇--------->
                 
                 <!------------------ 顶部菜单栏html👆--------->
                 <div class="col-xs-6 col-sm-3"></div>
@@ -872,10 +1026,10 @@ menulist.eq(i).show();
         <div id="bg">
         </div>
         <!------- 背景图加载方式👇----- -->
-        <div id="bgchoice" style="display: none">
+        <div id="bgchoice" style="display: none">link
             </div>
             
-            <div id="bgurl" style="display:none"></div>
+            <div id="bgurl" style="display:none">https://cdn.luogu.com.cn/upload/image_hosting/jslaf45m.png</div>
                
         <!------- 背景图加载方式👆----- -->
     </div>
@@ -891,11 +1045,21 @@ menulist.eq(i).show();
 </html>
 <!-------------------- live2d功能👇 --------------------------->
 
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://woshisb-river.github.io/media/js/live2d.js"></script>
+<script type="text/javascript" src="https://woshisb-river.github.io/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://woshisb-river.github.io/media/live2d/assets/tororo.model.json");
+</script>
+
 <!-------------------- live2d功能👆 --------------------------->
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
-    var bgchoice = ""
+    var bgchoice = "link"
     var bg = $('#bg');
     var bgurl = document.getElementById("bgurl").innerHTML;
     if (bgchoice == 'default')
@@ -911,3 +1075,5 @@ menulist.eq(i).show();
     }
 </script>
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
+
+<script src="https://woshisb-river.github.io/media/js/index.js"></script>
