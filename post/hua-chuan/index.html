@@ -2,13 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="description" content="题面
-手玩几个例子可以发现，当存在奇环时，是无解的，所以判断原图是否是二分图来输出 −1-1−1 即可
-于是原图就是一个二分图（二分图无奇环）
-现在考虑最长链怎么算，我们发现如果答案链中有条边连接了两个不相邻的节点，即如下情况
-
-我们会将中..." />
-    <meta name="keywords" content="图论,错题库" />
+    <meta name="description" content="划船
+由于涉及到绝对值，第一反应是将所有值放到数轴上，于是将船根据颜色从小到大排序放到数轴上，将人根据他们喜欢的颜色按从小到大排序放到另一条数轴上
+我们将人对应他坐的船连线，不难证明，如果有连线交叉，将他们坐的船互换后，发现不高兴程度一定会..." />
+    <meta name="keywords" content="动态规划,错题库" />
     <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
     <!-- 代码渲染风格css -->
@@ -50,7 +47,7 @@
         });
     </script>
     
-    <title>简单操作</title>
+    <title>划船</title>
 
     <!-- 大纲索引css调整 -->
     
@@ -1054,15 +1051,15 @@ menulist.eq(i).show();
         <div class="postshow postpadding" style="padding-bottom: 0;">
             
             <div class="postdetailimg">
-                <img src="https://cdn.luogu.com.cn/upload/image_hosting/31c5vkmq.png" class="postimage" style="cursor:auto">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/zh855ehh.png" class="postimage" style="cursor:auto">
             </div>
             <div class="postinfo-detail">
                 <div class="postdate"><i class="fa fa-calendar"></i>2022-10-20</div>
-                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 3 min read</div>
+                <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
                 <div class="posttag">
                     
-                    <a data-pjax href="https://woshisb-river.github.io/tag/graph/" class="postlink">
-                        <i class="fa fa-tag"></i> 图论
+                    <a data-pjax href="https://woshisb-river.github.io/tag/dp/" class="postlink">
+                        <i class="fa fa-tag"></i> 动态规划
                     </a>
                     
                     <a data-pjax href="https://woshisb-river.github.io/tag/wrong-problem/" class="postlink">
@@ -1074,22 +1071,25 @@ menulist.eq(i).show();
             
         <div id="articlecontent">
             <div id="texttitle" style="text-align: center">
-                <h2 id="ptitle">简单操作</h2>
+                <h2 id="ptitle">划船</h2>
                 <!-- id 将作为查询条件 -->
-                <div id="pl" style="display:none">https://woshisb-river.github.io/post/jian-dan-cao-zuo/</div>
+                <div id="pl" style="display:none">https://woshisb-river.github.io/post/hua-chuan/</div>
                 <div id="rootaddr" style="display:none">https://woshisb-river.github.io</div>
                 
             </div>
             <div class="text ">
-                <p><a href="http://wildwolf.yali.edu.cn/d/q2020/p/68?tid=634f97d81e8d6203f3fa69f7">题面</a></p>
-<p>手玩几个例子可以发现，当存在奇环时，是无解的，所以判断原图是否是二分图来输出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> 即可</p>
-<p>于是原图就是一个二分图（二分图无奇环）</p>
-<p>现在考虑最长链怎么算，我们发现如果答案链中有条边连接了两个不相邻的节点，即如下情况</p>
-<figure data-type="image" tabindex="1"><img src="https://cdn.luogu.com.cn/upload/image_hosting/sc1q0u9k.png" alt="" loading="lazy"></figure>
-<p>我们会将中间的四元环缩起来（这边将35和46合并成为新点27），变成如下</p>
-<figure data-type="image" tabindex="2"><img src="https://cdn.luogu.com.cn/upload/image_hosting/gqoek99d.png" alt="" loading="lazy"></figure>
-<p>此时链的长度变短，不符答案链最长，所以在答案链上没有边连接两个不相邻点，所以答案链就是两点之间的最短路</p>
-<p>所以此题就是在每个连通块中找到此块中最长的两点最短路，最后求和即可</p>
+                <p><a href="http://wildwolf.yali.edu.cn/d/q2020/p/P1324?tid=6350e8e31e8d6203f3fa848e">划船</a></p>
+<p>由于涉及到绝对值，第一反应是将所有值放到数轴上，于是将船根据颜色从小到大排序放到数轴上，将人根据他们喜欢的颜色按从小到大排序放到另一条数轴上</p>
+<p>我们将人对应他坐的船连线，不难证明，如果有连线交叉，将他们坐的船互换后，发现不高兴程度一定会更低，所以匹配线是类似平行的一些线段</p>
+<p>对于处理这种不会对后面有影响的问题，可以考虑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span></span></span></span>，设置状态 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 为前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 艘船总共坐了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个人所产生的最小不高兴程度</p>
+<p>可以枚举第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 艘船坐 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个人，即可列出方程</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><msubsup><mi>max</mi><mo>⁡</mo><mrow><mi>k</mi><mo>=</mo><mi>j</mi><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub></mrow><mi>j</mi></msubsup><mo>(</mo><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo></mrow><mo>+</mo></mrow><annotation encoding="application/x-tex">dp[i][j]=\max\limits_{k=j-y_i}^j({dp[i-1][k]}+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.127548em;vertical-align:-0.888216em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2393319999999999em;"><span style="top:-2.047892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">max</span></span></span><span style="top:-3.377668em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.888216em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span><span class="mord">+</span></span></span></span>第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个人到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个人坐第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 艘船产生的不高兴程度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>)</mo></mrow><annotation encoding="application/x-tex">)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">)</span></span></span></span></p>
+<p>其中第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个人到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个人坐第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 艘船产生的不高兴程度用前缀和优化，变成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>−</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">sum[i][j]-sum[i][k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span>（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">sum[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mtext> </mtext><mi>j</mi></mrow><annotation encoding="application/x-tex">1~j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mspace nobreak"> </span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个人都坐第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 艘船的不高兴程度总和）</p>
+<p>于是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">dp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span></span></span></span> 式子变成</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><munderover><mi>max</mi><mo>⁡</mo><mrow><mi>k</mi><mo>=</mo><mi>j</mi><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub></mrow><mi>j</mi></munderover><mo>(</mo><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>+</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>−</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo></mrow><mo>)</mo><mo>⟹</mo><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo><mo>=</mo><munderover><mi>max</mi><mo>⁡</mo><mrow><mi>k</mi><mo>=</mo><mi>j</mi><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub></mrow><mi>j</mi></munderover><mo>(</mo><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>−</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo></mrow><mo>)</mo><mo>+</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>j</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i][j]=\max_{k=j-y_i}^j({dp[i-1][k]+sum[i][j]-sum[i][k]})\Longrightarrow dp[i][j]=\max_{k=j-y_i}^j({dp[i-1][k]-sum[i][k]})+sum[i][j]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.127548em;vertical-align:-0.888216em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2393319999999999em;"><span style="top:-2.047892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">max</span></span></span><span style="top:-3.377668em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.888216em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.127548em;vertical-align:-0.888216em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2393319999999999em;"><span style="top:-2.047892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.03588em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">max</span></span></span><span style="top:-3.377668em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.888216em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span></span></p>
+<p>于是将 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>p</mi><mo>[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo><mo>−</mo><mi>s</mi><mi>u</mi><mi>m</mi><mo>[</mo><mi>i</mi><mo>]</mo><mo>[</mo><mi>k</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">dp[i-1][k]-sum[i][k]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">p</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">]</span></span></span></span> 看做一个整体，发现这个东西可以单调队列来优化</p>
+<p>于是可以单调队列直接求出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span></span></span></span> 进行转移</p>
 <p><strong>上菜</strong></p>
 <pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
 inline int read()
@@ -1101,60 +1101,44 @@ inline int read()
 	return f?-x:x;
 }
 using namespace std;
+struct node
+{	int w,id;
+};
 struct bb
-{	int nextt,to;
-}op[200005];
-int n,m,head[1005],cnt,fa[1005],maxdep[1005],now,dep[1005],ans;
-bool bj[1005];
-queue&lt;int&gt; q; 
-int find(int x){return fa[x]==x?fa[x]:fa[x]=find(fa[x]);}
-inline void add(int x,int y)
-{	op[++cnt].nextt=head[x];
-	op[cnt].to=y;
-	head[x]=cnt;
-}
-void bfs(int s)
-{	q.push(s);
-	dep[s]=0;
-	bj[s]=1;
-	while(!q.empty())
-	{	int x=q.front();
-		q.pop();
-		maxdep[now]=max(maxdep[now],dep[x]);
-		for(register int i=head[x];i;i=op[i].nextt)
-		{	int y=op[i].to;
-			if(bj[y]==0)
-			{	bj[y]=1;
-				dep[y]=dep[x]+1;
-				q.push(y);
+{	int x,y;
+}op[1005];
+int n,m,c[10005],f[1005][10005],maxn;
+deque&lt;node&gt; q;
+inline bool cmp(bb a,bb b){return a.x&lt;b.x;}
+int main()
+{	freopen(&quot;boat.in&quot;,&quot;r&quot;,stdin);
+	freopen(&quot;boat.out&quot;,&quot;w&quot;,stdout);
+	n=read(),m=read();
+	for(register int i=1;i&lt;=n;++i)op[i].x=read(),op[i].y=read();
+	for(register int i=1;i&lt;=m;++i)c[i]=read();
+	sort(op+1,op+n+1,cmp),sort(c+1,c+m+1);
+	memset(f,-1,sizeof(f));
+	for(register int i=1;i&lt;=n;++i)
+	{	while(!q.empty())q.pop_back();
+		q.push_back({0,0});
+		int t=0;
+		maxn+=op[i].y;
+		for(register int j=1;j&lt;=min(maxn,m);++j)
+		{	t+=abs(c[j]-op[i].x);
+			if(i==1)
+			{	f[i][j]=t;
+				continue;
 			}
+			int ls=f[i-1][j]-t;
+			if(f[i-1][j]!=-1)
+			{	while(!q.empty()&amp;&amp;ls&lt;=q.back().w||!q.empty()&amp;&amp;j-q.back().id&gt;op[i].y)q.pop_back();
+				q.push_back({ls,j});
+			}
+			while(!q.empty()&amp;&amp;j-q.front().id&gt;op[i].y)q.pop_front();
+			f[i][j]=q.front().w+t;
 		}
 	}
-	return ;
-}
-int main()
-{	n=read(),m=read();
-	if(n==10&amp;&amp;m==23)
-	{	cout&lt;&lt;-1;
-		return 0;
-	}
-	for(register int i=1;i&lt;=n;++i)fa[i]=i;
-	for(register int i=1;i&lt;=m;++i)
-	{	int x=read(),y=read();
-		add(x,y),add(y,x);
-		int fx=find(x),fy=find(y);
-		if(fx!=fy)fa[fy]=fx;
-	}
-	dep[0]=-1;
-	for(register int i=1;i&lt;=n;++i)
-	{	memset(bj,0,sizeof(bj)); 
-		now=i;
-		bfs(i);
-	}
-	for(register int i=1;i&lt;=n;++i)
-		if(find(i)!=i)maxdep[find(i)]=max(maxdep[i],maxdep[find(i)]),maxdep[i]=0;
-	for(register int i=1;i&lt;=n;++i)ans+=maxdep[i];
-	cout&lt;&lt;ans;
+	cout&lt;&lt;f[n][m];
 	return 0;
 }
 </code></pre>
@@ -1165,7 +1149,7 @@ int main()
             <div class="postfooter">
                 <ul class="post-copyright">
                     <li><strong>文章作者：</strong></li>
-            <li><strong>原文链接：</strong>https://woshisb-river.github.io/post/jian-dan-cao-zuo/</li>
+            <li><strong>原文链接：</strong>https://woshisb-river.github.io/post/hua-chuan/</li>
             <li><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用<i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA
                 许可协议。转载请注明出处！</li>
             </ul>
@@ -1173,29 +1157,17 @@ int main()
         
         <div id="otherpost">
             
-            <a  data-pjax class="prev-post-pc" href="https://woshisb-river.github.io/post/hua-chuan/"  style="color: black;">
-                <div id="ppcontainer">
-                    
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/zh855ehh.png" style="width: 100%;" class="opimg">
-                    
-                    <h4 class="optitle">划船</h4>
-                </div>
-            </a>
-            <div class="prev-post">
-                上一篇 <a  data-pjax href="https://woshisb-river.github.io/post/hua-chuan/">划船</a>
-            </div>
             
-            
-            <a data-pjax class="next-post-pc" href="https://woshisb-river.github.io/post/luogu-p2791-you-er-yuan-lan-qiu-ti/"  style="color: black;">
+            <a data-pjax class="next-post-pc" href="https://woshisb-river.github.io/post/jian-dan-cao-zuo/"  style="color: black;">
                 <div id="npcontainer">
                     
-                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/y8h3009x.png" style="width: 100%;" class="opimg">
+                    <img src="https://cdn.luogu.com.cn/upload/image_hosting/31c5vkmq.png" style="width: 100%;" class="opimg">
                     
-                    <h4 class="optitle">luogu P2791 幼儿园篮球题</h4>
+                    <h4 class="optitle">简单操作</h4>
                 </div>
             </a>
             <div class="next-post">
-                下一篇 <a  data-pjax href="https://woshisb-river.github.io/post/luogu-p2791-you-er-yuan-lan-qiu-ti/">luogu P2791 幼儿园篮球题</a>
+                下一篇 <a  data-pjax href="https://woshisb-river.github.io/post/jian-dan-cao-zuo/">简单操作</a>
             </div>
             
         </div>

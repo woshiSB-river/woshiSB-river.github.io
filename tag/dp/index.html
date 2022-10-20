@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/live2d.css">
-    <meta name="description" content="他朝若是同淋雪，此生也算共白头" />
-    <link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <title>Rivers-说说</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://woshisb-river.github.io/media/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://woshisb-river.github.io/media/css/live2d.css">
+<link rel="stylesheet" href="https://woshisb-river.github.io/styles/main.css">
+<link rel="stylesheet" href="https://woshisb-river.github.io/media/css/font-awesome.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<title>Rivers</title>
+
 
 <body>
+
     <div id="content">
         <div class="nav-large">
             <div class="row">
@@ -968,12 +967,12 @@ menulist.eq(i).show();
         btstate = false;
       }
     }
-  </script> 
+  </script> </div>
                 <!----------- 移动端导航栏👆 ----------------->
-                </div>
 
                 <!-- ----------------左侧菜单栏html 👇-------------------------------------->
                 
+                <div>
                     <div id="tab1" class="tab">
                         <div class="bars">
                             <span></span>
@@ -982,72 +981,142 @@ menulist.eq(i).show();
                         </div>
                         <div class="close"></div>
                     </div>
-                <div class="col-md-1 col-lg-3"></div>
-                <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7" style="z-index: 11;">
-                    <div class="mobilebar">
-                        <img src="" alt="" class="plbg">
-<script>
-    var bgchoice = "link";
-    if(bgchoice=='default')
-        var plbgurl = "/media/images/custom-mobilebg.jpg"
-    else  
-        var plbgurl = "https://cdn.luogu.com.cn/upload/image_hosting/qfnd6q1u.png"
-    $(".plbg").attr("src",plbgurl);
-    $(".plbg").fadeIn(200);
-</script>
+                    <div class="col-lg-3"></div>
+                        <div id="main" class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                            <link rel="stylesheet" href="https://woshisb-river.github.io/media/css/font-awesome.css">
+
+<div id="post-container">
+    
+    <div class="postshow postlist">
+        
+        <a data-pjax href="https://woshisb-river.github.io/post/hua-chuan/" class="apost">
+            <div id="post" style="width:100%">
+                <img src="https://cdn.luogu.com.cn/upload/image_hosting/zh855ehh.png" class="postimage">
+                <div class="posttitlebox">
+                    <div class="posttitle">
+                        划船
                     </div>
-                    <div id="talks">
-    <div id="talkContainer">
-    </div>
-    <button id="getmorebt" type="button" onclick="add()">获取更多</button>
-</div>
-<!-- 弹窗 -->
-<div id="myModal" class="modal">
-    <img class="modal-content" id="img01">
-</div>
                 </div>
-                <div class="col-md-1 col-lg-2"></div>
+            </div>
+        </a>
+        <div class="postinfo">
+            <div class="postdate"><i class="fa fa-calendar"></i>2022-10-20</div>
+            <div class="poststatus postdate"><i class="fa fa-clock-o"></i> 5 min read</div>
+            <div class="posttag">
+                
+                <a data-pjax href="https://woshisb-river.github.io/tag/dp/" class="postlink">
+                    <i class="fa fa-tag"></i> 动态规划
+                </a>
+                
+                <a data-pjax href="https://woshisb-river.github.io/tag/wrong-problem/" class="postlink">
+                    <i class="fa fa-tag"></i> 错题库
+                </a>
+                
+            </div>
+        </div>
+        
+</div>
+
+</div>
+
+                            <div>
+                                <div class="pcpagi">
+    <div class="pagi">
+        <ul>
+            
+            <li><a style="width:100px">&nbsp;</a></li>
+            
+                    <li><a id="page1">1</a></li>
+                    <li><a id="page2" class="active">2</a></li>
+                    <li><a id="page3">3</a></li>
+                    
+            <li><a style="width:100px">&nbsp;</a></li>
+            
+                </ul>
+    </div>
+</div>
+
+<div id="pagination-prev" style="display:none"> 
+</div>
+<div id="pagination-next" style="display:none"> </div>
+
+<div class="pagination-container">
+      
+    
+</div>
+
+<script>
+    var prevstr = document.getElementById("pagination-prev").innerHTML;
+    var nextstr = document.getElementById("pagination-next").innerHTML;
+    var page1 = document.getElementById("page1");
+    var page2 = document.getElementById("page2");
+    var page3 = document.getElementById("page3");
+    page1.innerHTML = '-';
+    page2.innerHTML = '1';
+    page3.innerHTML = '-';
+    if (prevstr.length > 5) {
+        if (prevstr.indexOf("page/") != -1) {
+            var prevnum = parseInt(prevstr.split("page/")[1]);
+            page1.innerHTML = prevnum;
+            page2.innerHTML = prevnum + 1;
+        } else {
+            page1.innerHTML = 1;
+            page2.innerHTML = 2;
+        }
+    }
+    if (nextstr.indexOf("page/") != -1) {
+        var nextnum = parseInt(nextstr.split("page/")[1]);
+        page3.innerHTML = nextnum;
+        page2.innerHTML = nextnum - 1;
+    }
+</script>
+                                <div style="padding-bottom:10%"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2"></div>
+                </div>
                 <!-- ----------------左侧菜单栏html 👆-------------------------------------->
                 
-                <!--------------- 顶部菜单栏html👇--------->
+                <!------------------ 顶部菜单栏html👇--------->
                 
-                <!--------------- 顶部菜单栏html👆--------->
+                <!------------------ 顶部菜单栏html👆--------->
             </div>
-            <!-- aplayer播放器加载👇 -->
             
-            <!-- aplayer播放器加载👆 -->
         </div>
         <div id="bg">
         </div>
-        <!-- 背景图加载方式👇 -->
+        <!------- 背景图加载方式👇----- -->
         <div id="bgchoice" style="display: none">link
-            </div>
-            
-            <div id="bgurl" style="display:none">https://cdn.luogu.com.cn/upload/image_hosting/jslaf45m.png</div>
-               
-        <!-- 背景图加载方式👆 -->
-    </div>
-    
-    <div id="landlord">
-        <div class="message" style="opacity:0"></div>
-        <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
-    </div>
-    <div id="domainname" style="display:none">https://woshisb-river.github.io</div>
-</body>
+                    </div>
+                    
+                    <div id="bgurl" style="display:none">https://cdn.luogu.com.cn/upload/image_hosting/jslaf45m.png</div>
+                       
+        </div>
+        <!------- 背景图加载方式👆 --------------->
+</div>
+</div>
 
+        <div id="landlord">
+            <div class="message" style="opacity:0"></div>
+            <canvas id="live2d" width="240" height="250" class="live2d"></canvas>
+        </div>
+        <div id="domainname" style="display:none">https://woshisb-river.github.io
+                </div>
+</body>
+</html>
 <!-------------------- live2d功能👇 --------------------------->
 
-    <script type="text/javascript">
-        var message_Path = '/live2d/'
-        var home_Path = document.getElementById("domainname").innerHTML+"/"; //此处修改为你的域名，必须带斜杠
-    </script>
-    <script type="text/javascript" src="https://woshisb-river.github.io/media/js/live2d.js"></script>
-    <script type="text/javascript" src="https://woshisb-river.github.io/media/live2d/js/message.js"></script>
-    <script type="text/javascript">
-            loadlive2d("live2d", "https://woshisb-river.github.io/media/live2d/assets/tororo.model.json");
-    </script>
+<script type="text/javascript">
+    var message_Path = '/live2d/'
+    var home_Path = document.getElementById("domainname").innerHTML + "/"; //此处修改为你的域名，必须带斜杠
+</script>
+<script type="text/javascript" src="https://woshisb-river.github.io/media/js/live2d.js"></script>
+<script type="text/javascript" src="https://woshisb-river.github.io/media/live2d/js/message.js"></script>
+<script type="text/javascript">
+    loadlive2d("live2d", "https://woshisb-river.github.io/media/live2d/assets/tororo.model.json");
+</script>
 
-<!-------------------- live2d功能👆 --------------------------->
+<!-------------------- live2d功能👆--------------------------->
 
 <!------------ 加载全局背景图功能👇（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 <script>
@@ -1069,16 +1138,4 @@ menulist.eq(i).show();
 <!------------ 加载全局背景图功能👆（开始时没有写好，这功能有点鸡肋/(ㄒoㄒ)/~~） -->
 
 
-        <script src="https://woshisb-river.github.io/media/js/index.js"></script>
-
-
-<!--------------------------- 说说功能👇------------------------- -->
-<script>
-
-    window.onload = function(){
-        aplayerbtnInit();
-        get();
-        add();
-    }
-</script>
-<!--------------------------- 说说功能👆------------------------- -->
+<script src="https://woshisb-river.github.io/media/js/index.js"></script>
