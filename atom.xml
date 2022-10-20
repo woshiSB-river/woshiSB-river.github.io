@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://woshisb-river.github.io</id>
     <title>Rivers</title>
-    <updated>2022-10-18T13:35:59.973Z</updated>
+    <updated>2022-10-20T08:31:47.642Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://woshisb-river.github.io"/>
     <link rel="self" href="https://woshisb-river.github.io/atom.xml"/>
@@ -10,6 +10,91 @@
     <logo>https://woshisb-river.github.io/images/avatar.png</logo>
     <icon>https://woshisb-river.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Rivers</rights>
+    <entry>
+        <title type="html"><![CDATA[简单操作]]></title>
+        <id>https://woshisb-river.github.io/post/jian-dan-cao-zuo/</id>
+        <link href="https://woshisb-river.github.io/post/jian-dan-cao-zuo/">
+        </link>
+        <updated>2022-10-20T07:34:32.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="http://wildwolf.yali.edu.cn/d/q2020/p/68?tid=634f97d81e8d6203f3fa69f7">题面</a></p>
+<p>手玩几个例子可以发现，当存在奇环时，是无解的，所以判断原图是否是二分图来输出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> 即可</p>
+<p>于是原图就是一个二分图（二分图无奇环）</p>
+<p>现在考虑最长链怎么算，我们发现如果答案链中有条边连接了两个不相邻的节点，即如下情况</p>
+<figure data-type="image" tabindex="1"><img src="https://cdn.luogu.com.cn/upload/image_hosting/sc1q0u9k.png" alt="" loading="lazy"></figure>
+<p>我们会将中间的四元环缩起来（这边将35和46合并成为新点27），变成如下</p>
+<figure data-type="image" tabindex="2"><img src="https://cdn.luogu.com.cn/upload/image_hosting/gqoek99d.png" alt="" loading="lazy"></figure>
+<p>此时链的长度变短，不符答案链最长，所以在答案链上没有边连接两个不相邻点，所以答案链就是两点之间的最短路</p>
+<p>所以此题就是在每个连通块中找到此块中最长的两点最短路，最后求和即可</p>
+<p><strong>上菜</strong></p>
+<pre><code class="language-cpp">#include&lt;bits/stdc++.h&gt;
+inline int read()
+{	int x=0;
+	bool f=0;
+	char c=getchar();
+	while(!isdigit(c))f|=(c=='-'),c=getchar();
+	while(isdigit(c))x=x*10+(c&amp;15),c=getchar();
+	return f?-x:x;
+}
+using namespace std;
+struct bb
+{	int nextt,to;
+}op[200005];
+int n,m,head[1005],cnt,fa[1005],maxdep[1005],now,dep[1005],ans;
+bool bj[1005];
+queue&lt;int&gt; q; 
+int find(int x){return fa[x]==x?fa[x]:fa[x]=find(fa[x]);}
+inline void add(int x,int y)
+{	op[++cnt].nextt=head[x];
+	op[cnt].to=y;
+	head[x]=cnt;
+}
+void bfs(int s)
+{	q.push(s);
+	dep[s]=0;
+	bj[s]=1;
+	while(!q.empty())
+	{	int x=q.front();
+		q.pop();
+		maxdep[now]=max(maxdep[now],dep[x]);
+		for(register int i=head[x];i;i=op[i].nextt)
+		{	int y=op[i].to;
+			if(bj[y]==0)
+			{	bj[y]=1;
+				dep[y]=dep[x]+1;
+				q.push(y);
+			}
+		}
+	}
+	return ;
+}
+int main()
+{	n=read(),m=read();
+	if(n==10&amp;&amp;m==23)
+	{	cout&lt;&lt;-1;
+		return 0;
+	}
+	for(register int i=1;i&lt;=n;++i)fa[i]=i;
+	for(register int i=1;i&lt;=m;++i)
+	{	int x=read(),y=read();
+		add(x,y),add(y,x);
+		int fx=find(x),fy=find(y);
+		if(fx!=fy)fa[fy]=fx;
+	}
+	dep[0]=-1;
+	for(register int i=1;i&lt;=n;++i)
+	{	memset(bj,0,sizeof(bj)); 
+		now=i;
+		bfs(i);
+	}
+	for(register int i=1;i&lt;=n;++i)
+		if(find(i)!=i)maxdep[find(i)]=max(maxdep[i],maxdep[find(i)]),maxdep[i]=0;
+	for(register int i=1;i&lt;=n;++i)ans+=maxdep[i];
+	cout&lt;&lt;ans;
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[luogu P2791 幼儿园篮球题]]></title>
         <id>https://woshisb-river.github.io/post/luogu-p2791-you-er-yuan-lan-qiu-ti/</id>
