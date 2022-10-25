@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://woshisb-river.github.io</id>
     <title>Rivers</title>
-    <updated>2022-10-20T15:47:59.977Z</updated>
+    <updated>2022-10-25T13:40:41.104Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://woshisb-river.github.io"/>
     <link rel="self" href="https://woshisb-river.github.io/atom.xml"/>
@@ -10,6 +10,30 @@
     <logo>https://woshisb-river.github.io/images/avatar.png</logo>
     <icon>https://woshisb-river.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Rivers</rights>
+    <entry>
+        <title type="html"><![CDATA[咕咕咕]]></title>
+        <id>https://woshisb-river.github.io/post/gu-gu-gu/</id>
+        <link href="https://woshisb-river.github.io/post/gu-gu-gu/">
+        </link>
+        <updated>2022-10-25T12:59:49.000Z</updated>
+        <content type="html"><![CDATA[<p>此题有两种解法</p>
+<p>首先第一种解法：</p>
+<p>我们将区间的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 从小到大排序，考虑设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">f[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathdefault">i</span><span class="mclose">]</span></span></span></span> 一个区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mtext> </mtext><mi>i</mi></mrow><annotation encoding="application/x-tex">1~i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace nobreak"> </span><span class="mord mathdefault">i</span></span></span></span> 刚好被线段覆盖完全的答案，不难想出转移，对于每一个以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 的区间，</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[装行李]]></title>
+        <id>https://woshisb-river.github.io/post/zhuang-xing-li/</id>
+        <link href="https://woshisb-river.github.io/post/zhuang-xing-li/">
+        </link>
+        <updated>2022-10-21T13:04:16.000Z</updated>
+        <content type="html"><![CDATA[<p><a href="http://wildwolf.yali.edu.cn/d/q2020/p/P1322?tid=6350e8e31e8d6203f3fa848e">题面</a></p>
+<p>看到此题，我们首先要对物品定一个序，让他可以顺序取下来一定当前最优</p>
+<p>于是我们将每一个物品的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 加上它的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>，让他可以装下自己</p>
+<p>然后按 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 从小到大排序</p>
+<p>对于当前物品，若它放不下，则看前面的物体总重量最大的去除后，能否将当前物品加入队列，能的话就将体重最大的物品弹出，加入当前物品（因为是按 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 排序的，不难证明替换物体后一定仍然满足所有物体承重条件 ）</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[划船]]></title>
         <id>https://woshisb-river.github.io/post/hua-chuan/</id>
